@@ -22,7 +22,7 @@ mongoose.connect("mongodb://localhost:27017/MEAN",function(err){
 		console.log("connected to MongoDB");
 	}
 });
-
+console.log("hello git");
 
 
 app.get('*',function(req,res){
