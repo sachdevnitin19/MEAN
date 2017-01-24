@@ -1,0 +1,27 @@
+<div class="page-header">
+	<h1>User Login</h1>
+</div>
+<!--ng-submit tells angular which function to call when submitting form and pass form data-->
+<form ng-submit="main.doLogin(loginData)">
+	<label>Username:</label>
+	<input class="form-control" type="text" placeholder="Please enter Username" ng-model="main.loginData.username">
+	<br>
+	<label>Password</label>
+	<input class="form-control" type="password" placeholder="Please enter Password" ng-model="main.loginData.password">
+	<br>
+	<button class="btn btn-primary" type="submit">Login</button>
+	<!--<div class="reset">
+	<a href="/resetpassword">
+		<button class="btn btn-danger" type="submit">Forgot Password</button>	
+	</a>
+	<a href="/resetusername">
+		<button class="btn btn-primary" type="submit">Forgot Username</button>	
+	</a>
+	</div>-->
+</form>
+<div class="row show-hide-message" ng-show="message">
+	<div class="alert alert-success">{{main.message}}</div>
+</div>
+<div class="row show-hide-message" ng-show="errormessage">
+	<div class="alert alert-danger">{{main.errormessage}}</div>
+</div>

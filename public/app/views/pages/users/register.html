@@ -1,0 +1,28 @@
+<div class="page-header">
+	<h1>User Registration</h1>
+</div>
+<!--ng-submit tells angular which function to call when submitting form and pass form data-->
+<form ng-submit="register.regUser(regData)">
+	<label>Full Name:</label>
+	<input autofocus class="form-control" type="text" placeholder="Please enter Full Name" ng-model="register.regData.fullname">
+	<label>Organisation Name:</label>
+	<input class="form-control" type="text" placeholder="Please enter your organisation name" ng-model="register.regData.orgname">
+	<label>Contactno:</label>
+	<input class="form-control" type="text" placeholder="Please enter your contactno" ng-model="register.regData.contactno">
+	<label>Email:</label><!-- naem is given to each field in format "ctrlname.formname.fieldname"-->
+	<input class="form-control" type="text" placeholder="Please enter Email" ng-model="register.regData.email">
+	<br>
+	<label>Username:</label>
+	<input class="form-control" type="text" placeholder="Please enter Username" ng-model="register.regData.username">
+	<br>
+	<label>Password</label>
+	<input class="form-control" type="password" placeholder="Please enter Password" ng-model="register.regData.password">
+	<br>
+	<button class="btn btn-primary" type="submit">Register</button>
+</form>
+<div class="row show-hide-message" ng-show="message">
+	<div class="alert alert-success">{{message}}</div>
+</div>
+<div class="row show-hide-message" ng-show="errormessage">
+	<div class="alert alert-danger">{{errormessage}}</div>
+</div>
