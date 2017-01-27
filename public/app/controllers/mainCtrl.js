@@ -58,7 +58,8 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 				
 				$timeout(function(){
 					$location.path('/');
-					appl.loginData='';
+					appl.loginData.username='';
+					appl.loginData.password='';
 					appl.message='';
 				},2000);
 
