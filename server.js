@@ -22,7 +22,7 @@ mongoose.connect("mongodb://sachdevnitin19:database@ds131729.mlab.com:31729/nvrv
 		console.log("connected to MongoDB");
 	}
 });
-console.log("hello git");
+
 
 
 app.get('*',function(req,res){

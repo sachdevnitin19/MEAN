@@ -8,30 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Theme Template for Bootstrap</title>
+    <title>N.V.R.V</title>
     
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="lib/css/animate.css">
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     
     
-    <script src="lib/js/angular.min.js"></script>
-    <script src="lib/js/angular-route.min.js"></script>
-    <script src="lib/js/angular-animate.min.js"></script>
-    <script src="lib/js/angular-sanitize.js"></script>
-    <script src="lib/js/angular-ui.github.io.js"></script>
+   
     <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.4.0.js"></script>-->
     
-    <script src="app/app.js"></script>
-    <script src="app/routes.js"></script>
     
-    <script src="app/controllers/userCtrl.js"></script>
-    <script src="app/controllers/mainCtrl.js"></script>
-    <script src="app/controllers/rating.js"></script>
-    
-
-    <script src="app/services/userServices.js"></script>
-    <script src="app/services/authServices.js"></script>
   </head>
 
   <body ng-app="myApp" ng-controller="mainController as main" ng-show="main.loadMe" ng-cloak><!-- ng-cloak is for loading body after collectin all angular data-->
@@ -46,11 +33,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand page-scroll" href="#">N.V.R.V</a>
+          <a class="navbar-brand page-scroll" href="/">N.V.R.V</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
+            
             <li><a href="/profile" >Profile</a></li>
             <li><a href="/login" ng-show="!main.loggedIn">Login</a></li>
             <li><a href="/register" ng-show="!main.loggedIn">Register</a></li>
@@ -80,7 +67,23 @@
     </div> <!-- /container -->
     <script src="lib/js/jquery-3.1.1.min.js"></script>
     <script src="lib/js/bootstrap.js"></script>
-      
-      
+     
+    <script src="lib/js/angular.min.js"></script>
+    <script src="lib/js/angular-route.min.js"></script>
+    <script src="lib/js/angular-animate.min.js"></script>
+    <script src="lib/js/angular-sanitize.js"></script>
+    <script src="lib/js/angular-ui.github.io.js"></script> 
+     
+
+     <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
+    
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/controllers/rating.js"></script>
+    
+
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script> 
   </body>
 </html>

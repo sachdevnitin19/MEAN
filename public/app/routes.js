@@ -21,7 +21,7 @@ app.config(function($routeProvider,$locationProvider){
 	})
 	.when('/logout',{
 		templateUrl:'./app/views/pages/users/logout.html',
-		authenticated:true
+		authenticated:false
 	})
 	.when('/myworkspace',{
 		templateUrl:'./app/views/pages/users/myworkspace.html',
@@ -46,11 +46,12 @@ app.run(['$rootScope','authFactory','$location',function($rootScope,authFactory,
 		if(next.$$route.authenticated==true){
 			if(!auth.isLoggedIn()){
 				event.preventDefault();
-				var boo=confirm('you must login to view your profile,login?');
-				if(boo)
-				{
-					$location.path('/login');	
-				}
+				$location.path('/');
+				
+					alert("you must login to view your profile");
+
+					
+				
 				//
 				//main.errormessage="Please login to view your profile";
 			}

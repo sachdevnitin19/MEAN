@@ -41,16 +41,18 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		}
 	}*/
 	this.logout=function(){
-		auth.logout();
 		$location.path('/logout');
+		auth.logout();
 		appl.fullname='';
 		$timeout(function(){
 					$location.path('/');
 				},2000);
+		
+		//$location.path('/');
 	}
 	this.doLogin=function(loginData){
 		appl.errormessage=false;
-		auth.login(this.loginData).then(function(data){//auth is factory object defined in userServices
+		auth.login(appl.loginData).then(function(data){//auth is factory object defined in userServices
 			if(data.data.success){
 				appl.message=data.data.message+"....Redirecting";
 				
