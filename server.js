@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public'));
 app.use('/api',appRoutes);
 mongoose.Promise = global.Promise;//to solve the promise warning after login.
-mongoose.connect("mongodb://localhost:27017/MEAN",function(err){
+mongoose.connect("mongodb://sachdevnitin19:database@ds131729.mlab.com:31729/nvrv",function(err){
  	if(err){
  		console.log("failed to connect to MongoDB. error:"+err);
 	}
