@@ -8,7 +8,7 @@ var validate=require('mongoose-validator');
 var nameValidator=[
 	validate({
 		validator: 'matches',
-		arguments:/^[a-zA-Z]+$/
+		arguments:/^([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})$/
 		})
 ];
 var UserSchema=new Schema({
