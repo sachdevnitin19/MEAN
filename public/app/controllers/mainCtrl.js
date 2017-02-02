@@ -83,8 +83,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 				},
 				function(up){
 					appl.obj.excel=up;
-					console.log(appl.obj.excel);
-					//console.log(JSON.stringify(up));
+					
 				}
 
 					);
@@ -101,8 +100,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 				},
 				function(up){
 					appl.obj.zip=up;
-					console.log(appl.obj.zip);
-					//console.log(JSON.stringify(up));
+					
 				}
 
 					);
@@ -121,7 +119,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
             tokenObj.wrkData.date=dte;
             tokenObj.resume=appl.obj.zip;
             tokenObj.excel=appl.obj.excel;
-			console.log(tokenObj);
+			
 			
 
 			$http.put('/api/wrk',tokenObj).then(function(data){
