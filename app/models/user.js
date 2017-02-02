@@ -18,7 +18,16 @@ var UserSchema=new Schema({
 	email:{type:String,required:true,lowercase:true,unique:true},
 	contactno:Number,
 	orgname:String,
-workspace:[{campname:String,profile:String,prodesc:String,datecreated1:{type:Date}}]
+workspace:[
+			{
+				campname:String,
+				profile:String,
+				prodesc:String,
+				datecreated1:{type:Date},
+				resume:{type:Schema.Types.Mixed,required:true},
+				excel:{type:Schema.Types.Mixed,required:true}
+			}
+		  ]
 });
 
 UserSchema.pre('save',function(next){

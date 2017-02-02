@@ -1,5 +1,5 @@
-var app=angular.module('appRoutes',['ngRoute','authServices','mainCtrl']);
-app.config(function($routeProvider,$locationProvider){
+var app=angular.module('appRoutes',['ngRoute','authServices','mainCtrl','angular-filepicker']);
+app.config(function($routeProvider,$locationProvider,filepickerProvider){
 	$routeProvider
 	
 	.when('/',{
@@ -34,6 +34,8 @@ app.config(function($routeProvider,$locationProvider){
 		controller:'RatingDemoCtrl'
 	})
 	.otherwise({redirectTo:'/'});
+
+	filepickerProvider.setKey('AUShvu37NQiOt12aaM8zrz');
 	
 	$locationProvider.html5Mode({// to remove # from links (noBase)
 		enabled:true,

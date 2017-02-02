@@ -1,6 +1,6 @@
-var app=angular.module('mainCtrl',['authServices']);
+var app=angular.module('mainCtrl',['authServices','angular-filepicker']);
 
-app.controller('mainController',function($http,$location,$timeout,$window,$rootScope,authFactory,authTokenFactory){
+app.controller('mainController',function($http,$location,$timeout,$window,$rootScope,authFactory,authTokenFactory,filepickerService){
 	var appl=this;
 	appl.loadMe=false;//this for loading body only when all angular data is collected.
 	$rootScope.$on('$routeChangeStart',function(){
@@ -70,19 +70,45 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 			}
 		});
 	}
-	
+	appl.obj={};
+	this.uploadexcel=function(){
+				
+				filepickerService.pick(
+				{
+					//mimetype:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+					extension:'.xlsx',
+					language:'en',
+					services:['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
+					openTo:'COMPUTER'
+				},
+				function(up){
+					appl.obj.excel=up;
+					console.log(appl.obj.excel);
+					//console.log(JSON.stringify(up));
+				}
+
+					);
+			};
+
+	this.uploadzip=function(){
+				filepickerService.pick(
+				{
+					//mimetype:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+					extension:'.zip',
+					language:'en',
+					services:['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
+					openTo:'COMPUTER'
+				},
+				function(up){
+					appl.obj.zip=up;
+					console.log(appl.obj.zip);
+					//console.log(JSON.stringify(up));
+				}
+
+					);
+			};
+
 	this.wrkfun=function(wrkData){
-		/*//console.log(this.wrkData);
-		//console.log("wrkfun");
-		auth.profile().then(function(data){
-			console.log(data);
-			//console.log(wrkData);
-			$rootScope.data1=data;
-			/*$http.put('/api/wrk/'+data.data.username,this.wrkData).then(function(data1){
-				console.log(data1);
-			})
-		})
-		console.log($rootScope.data1);*/
 		if(authToken.getToken())
 		{
 			
@@ -93,7 +119,11 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 			dte.setHours(dte.getHours()+5);
             dte.setMinutes(dte.getMinutes()+30);
             tokenObj.wrkData.date=dte;
-            
+            tokenObj.resume=appl.obj.zip;
+            tokenObj.excel=appl.obj.excel;
+			console.log(tokenObj);
+			
+
 			$http.put('/api/wrk',tokenObj).then(function(data){
 				
 				if(data.data.success)
@@ -110,3 +140,5 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		}
 	}
 });
+
+

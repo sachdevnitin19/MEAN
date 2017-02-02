@@ -1,0 +1,24 @@
+{
+  "name": "mean",
+  "description": "MEAN app",
+  "main": "server.js",
+  "authors": [
+    "nitin sachdev"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "MEAN"
+  ],
+  "homepage": "https://github.com/sachdevnitin19/MEAN",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-filepicker": "^1.1.4"
+  }
+}

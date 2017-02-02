@@ -86,9 +86,11 @@ module.exports=function(router){
 				res.json({success:false,message:'no token provided'});
 			}
 		});
+
 		router.post('/me',function(req,res){
 			res.send(req.decoded);
 		});
+		
 		router.put('/wrk',function(req,res){
 			if(!req.body.wrkData.campname||!req.body.wrkData.profile||!req.body.wrkData.prodesc)
 			{
@@ -96,7 +98,18 @@ module.exports=function(router){
 			}
 			else
 			{
-				User.findOneAndUpdate({username:req.decoded.username},{$push:{"workspace":{campname:req.body.wrkData.campname,profile:req.body.wrkData.profile,prodesc:req.body.wrkData.prodesc,datecreated1:req.body.wrkData.date}}},function(err,user){
+				User.findOneAndUpdate({username:req.decoded.username},
+					{$push:{
+						"workspace":{
+										campname:req.body.wrkData.campname,
+										profile:req.body.wrkData.profile,
+										prodesc:req.body.wrkData.prodesc,
+										datecreated1:req.body.wrkData.date,
+										resume:req.body.resume,
+										excel:req.body.excel
+									}
+							}
+					},function(err,user){
 				if(err){
 					console.log("error:"+err);
 				}

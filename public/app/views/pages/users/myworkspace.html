@@ -1,6 +1,7 @@
 <div class="page-header">
 	<h1>Recruitment Process Details</h1>
 </div>
+
 <!--ng-submit tells angular which function to call when submitting form and pass form data-->
 <form ng-submit="main.wrkfun(wrkData)">
 	<label>Campus Name:</label>
@@ -14,7 +15,11 @@
 	<br>
 	<label>Please Upload Excel Spreadsheet file containing candidate's details</label>
 	<br>
-	<button class="btn btn-primary">Choose .xslx File</button>
+	<button type="button" class="btn btn-info" ng-click="main.uploadzip()">Choose .zip File</button>
+	<br>
+	<label>Please zip file containing candidate's resume.</label>
+	<br>
+	 <button type="button" class="btn btn-info" ng-click="main.uploadexcel()">Choose .XSLX File</button>	
 	<br>
 	<br>
 	<button class="btn btn-primary" type="submit">Submit</button>
