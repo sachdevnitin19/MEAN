@@ -3,7 +3,6 @@ app.factory('authFactory',function($http,authTokenFactory){
 	auth={};//donot define this obj as "var authen" it will throw an error.
 	auth.login=function(loginData){
 		return $http.post('/api/authenticate',loginData).then(function(data){
-			console.log(data);
 			authTokenFactory.setToken(data.data.token);//calling the authTokenFactory method setToken to save token in localStorage
 			return data;//data has to be returned else mainCtrl wont be able to use it.
 		});
