@@ -8,14 +8,22 @@ var validate=require('mongoose-validator');
 var nameValidator=[
 	validate({
 		validator: 'matches',
-		arguments:/^([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})$/
+		arguments:/^([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})$/,
+		message:"name invalid"
 		})
+];
+var emailValidator=[
+	validate({
+		validator:'matches',
+		arguments:/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
+		message:"email invalid"
+	})
 ];
 var UserSchema=new Schema({
 	fullname:{type:String,required:true, validate: nameValidator },
 	username:{type:String,lowercase:true,required:true,unique:true},
 	password:{type:String,required:true},
-	email:{type:String,required:true,lowercase:true,unique:true},
+	email:{type:String,required:true,lowercase:true,unique:true,validate:emailValidator},
 	contactno:Number,
 	orgname:String,
 workspace:[

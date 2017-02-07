@@ -19,11 +19,28 @@ module.exports=function(router){
 		{
 			user.save(function(err){
 				if(err){
-					//res.send("username or email already exists");
-					res.json({success:false,message:"Username or Email already exists"});
+					
+					if(err.name=='ValidationError' && err.name!=undefined){
+						
+						if(err.errors.fullname == undefined && err.errors.email!=undefined && err.errors.email.path=='email' ){
+							
+							res.json({success:false,message:"Please Enter a Valid Email address"});	
+						}
+						else if(err.errors.email == undefined && err.errors.fullname!=undefined && err.errors.fullname.path=='fullname'  ){
+						
+							res.json({success:false,message:"Please enter your Full Name."});	
+						}
+						else{
+							
+							res.json({success:false,message:"Please Enter a Valid Contactno"});
+						}
+					}
+					else
+					{
+						res.json({success:false,message:"username or email already exixts"});
+					}
 				}
 				else{
-					//res.send("user created");
 					res.json({success:true,message:"User Created Successfully"});
 				}
 			})
