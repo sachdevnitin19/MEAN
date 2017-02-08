@@ -21,15 +21,15 @@ module.exports=function(router){
 				if(err){
 					
 					if(err.name=='ValidationError' && err.name!=undefined){
-						
-						if(err.errors.fullname == undefined && err.errors.email!=undefined && err.errors.email.path=='email' ){
-							
-							res.json({success:false,message:"Please Enter a Valid Email address"});	
-						}
-						else if(err.errors.email == undefined && err.errors.fullname!=undefined && err.errors.fullname.path=='fullname'  ){
+						if(err.errors.email == undefined && err.errors.fullname!=undefined && err.errors.fullname.path=='fullname'  ){
 						
 							res.json({success:false,message:"Please enter your Full Name."});	
 						}
+						else if(err.errors.fullname == undefined && err.errors.email!=undefined && err.errors.email.path=='email' ){
+							
+							res.json({success:false,message:"Please Enter a Valid Email address"});	
+						}
+						 
 						else{
 							
 							res.json({success:false,message:"Please Enter a Valid Contactno"});
