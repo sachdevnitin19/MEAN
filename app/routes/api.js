@@ -20,25 +20,33 @@ module.exports=function(router){
 			user.save(function(err){
 				if(err){
 					
-					if(err.name=='ValidationError' && err.name!=undefined){
-						if(err.errors.email == undefined && err.errors.fullname!=undefined && err.errors.fullname.path=='fullname'  ){
-						
-							res.json({success:false,message:"Please enter your Full Name."});	
-						}
-						else if(err.errors.fullname == undefined && err.errors.email!=undefined && err.errors.email.path=='email' ){
-							
-							res.json({success:false,message:"Please Enter a Valid Email address"});	
-						}
-						 
-						else{
-							
-							res.json({success:false,message:"Please Enter a Valid Contactno"});
-						}
-					}
-					else
-					{
-						res.json({success:false,message:"username or email already exixts"});
-					}
+					  // Check if any validation errors exists (from user model)
+                    if (err.errors !== undefined) {
+                    	console.log(err.code);
+                        if (err.errors.name) {
+                            res.json({ success: false, message: err.errors.name.message }); // Display error in validation (name)
+                        } else if (err.errors.email) {
+                            res.json({ success: false, message: err.errors.email.message }); // Display error in validation (email)
+                        } else if (err.errors.username) {
+                            res.json({ success: false, message: err.errors.username.message }); // Display error in validation (username)
+                        } else if (err.errors.password) {
+                            res.json({ success: false, message: err.errors.password.message }); // Display error in validation (password)
+                        } else {
+                            res.json({ success: false, message: "Invalid Contactno" }); // Display any other errors with validation
+                        }
+                    } else if (err) {
+                    	
+                        // Check if duplication error exists
+                        if (err.code == 11000) {
+                            if (err.errmsg[57] == "u") {
+                                res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
+                            } else if (err.errmsg[57] == "e") {
+                                res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
+                            }
+                        } else {
+                            res.json({ success: false, message: err }); // Display any other error
+                        }
+                    }
 				}
 				else{
 					res.json({success:true,message:"User Created Successfully"});
