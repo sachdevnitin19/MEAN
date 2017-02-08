@@ -90,7 +90,7 @@ module.exports=function(router){
 		/*below route middleware catches the req for '/api/me' and extracts the token from req body and verifies it using jwt.verify
 		method,after verifying it sends the decrypted info of token in req.decoded back to front end*/
 		router.use(function(req,res,next){
-			var token=req.body.token||req.body.query||req.headers['x-access-token'];
+			var token=req.body.token||req.body.query||req.headers['x-access-token']||req.headers['token'];
 			if(token)
 			{
 				jwt.verify(token,secret,function(err,decoded){
@@ -147,6 +147,12 @@ module.exports=function(router){
 
 			
 		});
+		router.get('/wrkspc',function(req,res){
+			User.findOne({username:req.decoded.username}).select('workspace').exec(function(err,user){
+					if(err) throw err;
+					res.send(user.workspace);
+			})
+		})
 		
 		return router;
 }

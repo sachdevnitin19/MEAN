@@ -137,6 +137,21 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 			})
 		}
 	}
+	appl.wrk=[];
+	this.wrkspc=function(){
+		var tokenObj={};
+		tokenObj.token=authToken.getToken();
+		$http.get('/api/wrkspc',{headers:tokenObj}).then(function(data){
+			appl.wrk=data.data;
+			/*var date=new Date(appl.wrk[0].datecreated1);
+			console.log(date);
+			console.log(appl.wrk[0].datecreated1);
+			date=date.toString();
+			appl.wrk[0].datecreated1=date;
+			console.log("date is "+date);*/
+		})
+	}
+	
 });
 
 

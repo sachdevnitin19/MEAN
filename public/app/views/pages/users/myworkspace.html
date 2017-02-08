@@ -31,3 +31,28 @@
 <div class="row show-hide-message" ng-show="main.errormessage1">
 	<div class="alert alert-danger">{{main.errormessage1}}</div>
 </div>
+
+<!-- Workspace Management Table -->
+<div class="panel panel-primary">
+    <!-- Heading -->
+    <div class="panel-heading">
+        <strong>Workspace Management</strong>
+    </div>
+    <!-- Start: Table -->
+    <table class="table">
+        <tr>
+            <th>Campus Name</th>
+            <th>Profile</th>
+            <th>Profile Description</th>
+            <th>Date Created</th>
+        </tr>
+        <tr ng-repeat="i in main.wrk">
+            <td>{{ i.campname }}</td>
+            <td>{{ i.profile }}</td>
+            <td>{{ i.prodesc }}</td>
+            <td>{{i.datecreated1}}</td>
+        </tr>
+        <!-- End: Table -->
+    </table>
+</div>
+<!-- Workspace Management Table -->
