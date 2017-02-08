@@ -16,8 +16,6 @@ app.use('/api',appRoutes);
 mongoose.Promise = global.Promise;//to solve the promise warning after login.
 var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } }; 
-
-console.log("hello git from master");
 mongoose.connect("mongodb://sachdevnitin19:database@ds131729.mlab.com:31729/nvrv",options,function(err){
  	if(err){
  		console.log("failed to connect to MongoDB. error:"+err);
