@@ -1,6 +1,10 @@
 var User=require('../models/user');
 var jwt=require('jsonwebtoken');
 var secret= new Buffer("NITIN", "base64");
+var PythonShell=require('python-shell');
+
+
+
 module.exports=function(router){
 		router.post('/users',function(req,res){
 		var user= new User();
@@ -87,6 +91,14 @@ module.exports=function(router){
 			});
 		});
 		
+		router.get('/py',function(req,res){
+			PythonShell.run('./python/hello.py', function (err,resu) {
+			  if (err) throw err;
+			  console.log(resu);
+			  res.json(resu);
+			});
+		})
+		
 		/*below route middleware catches the req for '/api/me' and extracts the token from req body and verifies it using jwt.verify
 		method,after verifying it sends the decrypted info of token in req.decoded back to front end*/
 		router.use(function(req,res,next){
@@ -119,10 +131,13 @@ module.exports=function(router){
 		router.put('/wrk',function(req,res){
 			if(!req.body.wrkData.campname||!req.body.wrkData.profile||!req.body.wrkData.prodesc)
 			{
-				res.json({success:false,message:"failed to add workspace"})
+				res.json({success:false,message:"Please enter all fields."})
 			}
 			else
 			{
+			    
+
+
 				User.findOneAndUpdate({username:req.decoded.username},
 					{$push:{
 						"workspace":{

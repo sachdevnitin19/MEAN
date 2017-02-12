@@ -127,7 +127,15 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 				if(data.data.success)
 				{
 					
-					appl.message1=data.data.message;
+					appl.message1=data.data.message+"...Redirecting";
+					$timeout(function(){
+					$location.path('/myworkspace');
+						appl.wrkData.campname='';
+						appl.wrkData.profile='';
+						appl.wrkData.prodesc='';
+						tokenObj={};
+						appl.message1='';
+				},2500);
 					
 				}
 				else
@@ -138,7 +146,8 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		}
 	}
 	appl.wrk=[];
-	this.wrkspc=function(){
+	function wrkspc(){
+		console.log("wrkspc");
 		var tokenObj={};
 		tokenObj.token=authToken.getToken();
 		$http.get('/api/wrkspc',{headers:tokenObj}).then(function(data){
@@ -151,7 +160,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 			console.log("date is "+date);*/
 		})
 	}
-	
+	wrkspc();
 });
 
 

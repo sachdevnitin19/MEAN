@@ -1,41 +1,14 @@
 <div class="page-header">
-	<h1>Recruitment Process Details</h1>
+	<h1 align="center">Workspace</h1>
 </div>
-
-<!--ng-submit tells angular which function to call when submitting form and pass form data-->
-<form ng-submit="main.wrkfun(wrkData)">
-	<label>Campus Name:</label>
-	<input autofocus class="form-control" type="text" placeholder="eg-V.E.S.I.T" ng-model="main.wrkData.campname">
-	<br>
-	<label>Profile:</label>
-	<input class="form-control" type="text" placeholder="eg-Software Developer" ng-model="main.wrkData.profile">
-	<br>
-	<label>Profile Description:</label>
-	<textarea class="form-control" type="textarea" placeholder="Describe the requirements for the profile" ng-model="main.wrkData.prodesc"></textarea>
-	<br>
-	<label>Please Upload Excel Spreadsheet file containing candidate's details</label>
-	<br>
-	<button type="button" class="btn btn-info" ng-click="main.uploadzip()">Choose .zip File</button>
-	<br>
-	<label>Please zip file containing candidate's resume.</label>
-	<br>
-	 <button type="button" class="btn btn-info" ng-click="main.uploadexcel()">Choose .XSLX File</button>	
-	<br>
-	<br>
-	<button class="btn btn-primary" type="submit">Submit</button>
-</form>
+<a class="btn btn-primary btn-lg " href="/newwrkspc"><span class="glyphicon glyphicon-briefcase"></span> add new workspace</a>
 <br>
-<div class="row show-hide-message" ng-show="main.message1">
-	<div class="alert alert-success">{{main.message1}}</div>
-</div>
-<div class="row show-hide-message" ng-show="main.errormessage1">
-	<div class="alert alert-danger">{{main.errormessage1}}</div>
-</div>
+<br>
 
 <!-- Workspace Management Table -->
 <div class="panel panel-primary">
     <!-- Heading -->
-    <div class="panel-heading">
+    <div class="panel-heading ">
         <strong>Workspace Management</strong>
     </div>
     <!-- Start: Table -->

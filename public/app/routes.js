@@ -33,6 +33,10 @@ app.config(function($routeProvider,$locationProvider,filepickerProvider){
 		authenticated:true,
 		controller:'RatingDemoCtrl'
 	})
+	.when('/newwrkspc',{
+		templateUrl:'./app/views/pages/users/newwrkspc.html',
+		authenticated:true
+	})
 	.otherwise({redirectTo:'/'});
 
 	filepickerProvider.setKey('AUShvu37NQiOt12aaM8zrz');
