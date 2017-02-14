@@ -91,13 +91,7 @@ module.exports=function(router){
 			});
 		});
 		
-		router.get('/py',function(req,res){
-			PythonShell.run('./python/hello.py', function (err,resu) {
-			  if (err) throw err;
-			  console.log(resu);
-			  res.json(resu);
-			});
-		})
+		
 		
 		/*below route middleware catches the req for '/api/me' and extracts the token from req body and verifies it using jwt.verify
 		method,after verifying it sends the decrypted info of token in req.decoded back to front end*/

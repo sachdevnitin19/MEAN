@@ -2,7 +2,8 @@
 	<h1>User Login</h1>
 </div>
 <!--ng-submit tells angular which function to call when submitting form and pass form data-->
-<form ng-submit="main.doLogin(loginData)">
+<form  ng-submit="main.doLogin(loginData)">
+	<div class="form-group">
 	<label>Username:</label>
 	<input class="form-control" type="text" placeholder="Please enter Username" ng-model="main.loginData.username">
 	<br>
@@ -12,12 +13,13 @@
 	<button class="btn btn-primary" type="submit">Login</button>
 	<!--<div class="reset">
 	<a href="/resetpassword">
-		<button class="btn btn-danger" type="submit">Forgot Password</button>	
+		<button class="btn btn-danger" type="submit">Forgot Password</button>
 	</a>
 	<a href="/resetusername">
-		<button class="btn btn-primary" type="submit">Forgot Username</button>	
+		<button class="btn btn-primary" type="submit">Forgot Username</button>
 	</a>
 	</div>-->
+</div>
 </form>
 <div class="row show-hide-message" ng-show="main.message">
 	<div class="alert alert-success">{{main.message}}</div>
