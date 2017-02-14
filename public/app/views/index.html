@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     <link rel="shortcut icon" href="./app/views/favicon.ico" >
+    <link href="lib/css/carousel.css" rel="stylesheet">
 
      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
@@ -89,6 +90,10 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <br>
+    <br>
+    <br>
+    
 
 
 
@@ -97,126 +102,123 @@
 
 
 
-
-
-
-    <div class="container theme-showcase" role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action
-      <div class="jumbotron">
-        <h1>Theme example</h1>
-        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
-      </div>-->
-      <br>
-      <br>
-      <br>
-     <div ng-view></div>
-
-     <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header" style="padding:35px 50px;">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-       <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
-      </div>
-      <div class="modal-body">
-        
-         <form role="form" ng-submit="main.doLogin(loginData)">
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email" ng-model="main.loginData.username">
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password" ng-model="main.loginData.password">
-            </div>
+    <div >
+         <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="padding:35px 50px;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+          </div>
+          <div class="modal-body">
             
-              <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
-          </form>
-          <div class="row show-hide-message" ng-show="main.message">
-            <div class="alert alert-success">{{main.message}}</div>
+             <form role="form" ng-submit="main.doLogin(loginData)">
+                <div class="form-group">
+                  <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                  <input type="text" class="form-control" id="usrname" placeholder="Enter email" ng-model="main.loginData.username">
+                </div>
+                <div class="form-group">
+                  <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                  <input autocomplete="off" type="password" class="form-control" id="psw" placeholder="Enter password" ng-model="main.loginData.password">
+                </div>
+                
+                  <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+              </form>
+              <div class="row show-hide-message" ng-show="main.message">
+                <div class="alert alert-success">{{main.message}}</div>
+              </div>
+              <div class="row show-hide-message" ng-show="main.errormessage">
+                <div class="alert alert-danger">{{main.errormessage}}</div>
+              </div>
+              
           </div>
-          <div class="row show-hide-message" ng-show="main.errormessage">
-            <div class="alert alert-danger">{{main.errormessage}}</div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+              <p>Not a member? <a  class="custom-close" href="#mydodal">Sign Up</a></p>
           </div>
-          
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>Not a member? <a  class="custom-close" href="#mydodal">Sign Up</a></p>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
-      <!-- Modal -->
-  <div class="modal fade" id="mydodal" role="dialog">
-    <div class="modal-dialog modal-lg">
+          <!-- Modal -->
+      <div class="modal fade" id="mydodal" role="dialog">
+        <div class="modal-dialog modal-lg">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="padding:10px 50px;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Register</h4>
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header" style="padding:10px 50px;">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4><span class="glyphicon glyphicon-lock"></span> Register</h4>
+            </div>
+            <div class="modal-body" style="padding:10px 50px;">
+              <form role="form" ng-submit="main.regUser(regData)">
+                <div class="form-group">
+                  <label for="name"><span class="glyphicon glyphicon-font"></span> Full Name</label>
+                  <input type="text" class="form-control" id="usrname" placeholder="Enter Full Name" ng-model="main.regData.fullname">
+                </div>
+                <div class="form-group">
+                  <label for="psw"><span class="glyphicon glyphicon-briefcase"></span> Organisation Name</label>
+                  <input type="text" class="form-control" id="psw" placeholder="Enter Organisation Name" ng-model="main.regData.orgname">
+                </div>
+                <div class="row">
+                <div class="form-group  col-md-6">
+                  <label for="psw"><span class="  glyphicon glyphicon-phone"></span> Contact no</label>
+                  <input type="text" class="form-control" id="psw" placeholder="Enter Contact no"  ng-model="main.regData.contactno">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="psw"><span class=" glyphicon glyphicon-envelope"></span> Email</label>
+                  <input type="text" class="form-control" id="psw" placeholder="Enter Email" ng-model="main.regData.email">
+                </div>
+                </div>
+                <div class="form-group">
+                  <label for="psw"><span class="glyphicon glyphicon-user"></span> Username</label>
+                  <input type="text" class="form-control" id="psw" placeholder="Enter Username" ng-model="main.regData.username">
+                </div>
+                <div class="form-group">
+                  <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                  <input autocomplete="off" type="password" class="form-control" id="psw" placeholder="Enter Password" ng-model="main.regData.password">
+                </div>
+                
+                  <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Register</button>
+              </form>
+              <div class="row show-hide-message" ng-show="main.regmessage">
+                    <div class="alert alert-success">{{main.regmessage}}</div>
+              </div>
+              <div class="row show-hide-message" ng-show="main.regerrormessage">
+                 <div class="alert alert-danger">{{main.regerrormessage}}</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            </div>
+          </div>
+
         </div>
-        <div class="modal-body" style="padding:10px 50px;">
-          <form role="form" ng-submit="main.regUser(regData)">
-            <div class="form-group">
-              <label for="name"><span class="glyphicon glyphicon-font"></span> Full Name</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter Full Name" ng-model="main.regData.fullname">
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-briefcase"></span> Organisation Name</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Organisation Name" ng-model="main.regData.orgname">
-            </div>
-            <div class="row">
-            <div class="form-group  col-md-6">
-              <label for="psw"><span class="  glyphicon glyphicon-phone"></span> Contact no</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Contact no"  ng-model="main.regData.contactno">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="psw"><span class=" glyphicon glyphicon-envelope"></span> Email</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Email" ng-model="main.regData.email">
-            </div>
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Username" ng-model="main.regData.username">
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Password" ng-model="main.regData.password">
-            </div>
-            
-              <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Register</button>
-          </form>
-          <div class="row show-hide-message" ng-show="main.regmessage">
-                <div class="alert alert-success">{{main.regmessage}}</div>
-          </div>
-          <div class="row show-hide-message" ng-show="main.regerrormessage">
-             <div class="alert alert-danger">{{main.regerrormessage}}</div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-        </div>
-      </div>
-
     </div>
-  </div>
-  
-
-
-
-
+     
+     <div id="loading" class="modal fade" role="dialog">
+         <div class="modal-dialog">
+             
+             <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+             </div>
+                 <div class="modal-body">
+                     Logging Out...
+                 </div>
+                 <div class="modal-footer">
+                    
+                 </div>
+             </div>
+         </div>
+     </div> 
     </div> <!-- /container -->
 
-    
+ <ng-view></ng-view>
 
-    
-
+ 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js"></script>
@@ -243,6 +245,5 @@
     </script>
 
 
-
-  </body>
+</body>
 </html>

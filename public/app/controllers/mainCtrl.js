@@ -41,12 +41,14 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		}
 	}*/
 	this.logout=function(){
-		$location.path('/logout');
+		$location.path('/');
+		angular.element('#loading').modal();
 		auth.logout();
 		appl.fullname='';
 		$timeout(function(){
 					appl.wrk=[];
 					$location.path('/');
+					angular.element('#loading').modal('hide');
 				},2000);
 		
 		//$location.path('/');
@@ -55,7 +57,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		appl.errormessage=false;
 		auth.login(appl.loginData).then(function(data){//auth is factory object defined in userServices
 			if(data.data.success){
-				appl.message=data.data.message;
+				appl.message=data.data.message+"...Redirecting";
 				
 				$timeout(function(){
 					angular.element('#myModal').modal('hide');
