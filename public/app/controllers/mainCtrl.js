@@ -1,6 +1,6 @@
-var app=angular.module('mainCtrl',['authServices','angular-filepicker']);
+var app=angular.module('mainCtrl',['authServices','angular-filepicker','userServices']);
 
-app.controller('mainController',function($http,$location,$timeout,$window,$rootScope,authFactory,authTokenFactory,filepickerService){
+app.controller('mainController',function($http,$location,$timeout,$window,$rootScope,authFactory,authTokenFactory,filepickerService,userFactory){
 	var appl=this;
 	appl.loadMe=false;//this for loading body only when all angular data is collected.
 	$rootScope.$on('$routeChangeStart',function(){
@@ -45,6 +45,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		auth.logout();
 		appl.fullname='';
 		$timeout(function(){
+					appl.wrk=[];
 					$location.path('/');
 				},2000);
 		
@@ -54,14 +55,17 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		appl.errormessage=false;
 		auth.login(appl.loginData).then(function(data){//auth is factory object defined in userServices
 			if(data.data.success){
-				appl.message=data.data.message+"....Redirecting";
+				appl.message=data.data.message;
 				
 				$timeout(function(){
-					$location.path('/');
+					angular.element('#myModal').modal('hide');
+					wrkspc();
+					$location.path('/profile');
 					appl.loginData.username='';
 					appl.loginData.password='';
 					appl.message='';
 				},2000);
+				//$location.path('/profile');
 
 			}
 			else
@@ -145,13 +149,32 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 			})
 		}
 	}
+
+	this.regUser=function(regData){
+		appl.regerrormessage=false;
+		regFac.create(this.regData).then(function(data){//regFac is factory object defined in userServices
+			if(data.data.success){
+				appl.regmessage=data.data.message;
+				$timeout(function(){
+					angular.element('#mydodal').modal('hide');
+					$location.path('/');
+				},2000);
+			}
+			else
+			{
+				appl.regerrormessage=data.data.message;
+			}
+		});
+	};
 	appl.wrk=[];
+	appl.wrkboo=false
 	function wrkspc(){
-		console.log("wrkspc");
 		var tokenObj={};
 		tokenObj.token=authToken.getToken();
 		$http.get('/api/wrkspc',{headers:tokenObj}).then(function(data){
 			appl.wrk=data.data;
+			if(appl.wrk)
+				appl.wrkboo=true;
 			/*var date=new Date(appl.wrk[0].datecreated1);
 			console.log(date);
 			console.log(appl.wrk[0].datecreated1);

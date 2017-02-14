@@ -16,6 +16,10 @@
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     <link rel="shortcut icon" href="./app/views/favicon.ico" >
 
+     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
    <!-- <script src="lib/js/angular.min.js"></script>-->
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 
@@ -118,19 +122,24 @@
       </div>
       <div class="modal-body">
         
-         <form role="form">
+         <form role="form" ng-submit="main.doLogin(loginData)">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email" ng-model="main.loginData.username">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+              <input type="text" class="form-control" id="psw" placeholder="Enter password" ng-model="main.loginData.password">
             </div>
             
               <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
           </form>
-          
+          <div class="row show-hide-message" ng-show="main.message">
+            <div class="alert alert-success">{{main.message}}</div>
+          </div>
+          <div class="row show-hide-message" ng-show="main.errormessage">
+            <div class="alert alert-danger">{{main.errormessage}}</div>
+          </div>
           
       </div>
       <div class="modal-footer">
@@ -153,37 +162,42 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Register</h4>
         </div>
         <div class="modal-body" style="padding:10px 50px;">
-          <form role="form">
+          <form role="form" ng-submit="main.regUser(regData)">
             <div class="form-group">
               <label for="name"><span class="glyphicon glyphicon-font"></span> Full Name</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter Full Name">
+              <input type="text" class="form-control" id="usrname" placeholder="Enter Full Name" ng-model="main.regData.fullname">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-briefcase"></span> Organisation Name</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Organisation Name">
+              <input type="text" class="form-control" id="psw" placeholder="Enter Organisation Name" ng-model="main.regData.orgname">
             </div>
             <div class="row">
             <div class="form-group  col-md-6">
               <label for="psw"><span class="  glyphicon glyphicon-phone"></span> Contact no</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Contact no">
+              <input type="text" class="form-control" id="psw" placeholder="Enter Contact no"  ng-model="main.regData.contactno">
             </div>
             <div class="form-group col-md-6">
               <label for="psw"><span class=" glyphicon glyphicon-envelope"></span> Email</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Email">
+              <input type="text" class="form-control" id="psw" placeholder="Enter Email" ng-model="main.regData.email">
             </div>
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Username">
+              <input type="text" class="form-control" id="psw" placeholder="Enter Username" ng-model="main.regData.username">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Password">
+              <input type="text" class="form-control" id="psw" placeholder="Enter Password" ng-model="main.regData.password">
             </div>
             
               <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Register</button>
-              
           </form>
+          <div class="row show-hide-message" ng-show="main.regmessage">
+                <div class="alert alert-success">{{main.regmessage}}</div>
+          </div>
+          <div class="row show-hide-message" ng-show="main.regerrormessage">
+             <div class="alert alert-danger">{{main.regerrormessage}}</div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -201,9 +215,7 @@
 
     
 
-     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>

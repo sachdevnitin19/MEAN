@@ -11,8 +11,8 @@ app.config(function($routeProvider,$locationProvider,filepickerProvider){
 	})
 	.when('/register',{
 		templateUrl:'./app/views/pages/users/register.html',
-		controller:'regCtrl',
-		controllerAs:'register',//nickname for regCtrl
+		/*controller:'regCtrl',
+		controllerAs:'register',//nickname for regCtrl*/
 		authenticated:false
 	})
 	.when('/login',{
