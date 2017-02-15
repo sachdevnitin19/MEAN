@@ -67,7 +67,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="">
-                        <a class="page-scroll" ng-show="main.loggedIn" href="/profile">Profile</a>
+                        <a class="page-scroll" ng-show=false href="/profile">Profile</a>
                     </li>
                     <li class="">
                        <!-- <a ng-show="!main.loggedIn" class="page-scroll btn btn-primary btn-sm" role="button" href="/login">Login</a>-->
@@ -111,7 +111,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
            <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" style="padding:10px 50px;">
             
              <form role="form" ng-submit="main.doLogin(loginData)">
                 <div class="form-group">
@@ -155,7 +155,7 @@
             <div class="modal-body" style="padding:10px 50px;">
               <form role="form" ng-submit="main.regUser(regData)">
                 <div class="form-group">
-                  <label for="name"><span class="glyphicon glyphicon-font"></span> Full Name</label>
+                  <label for="name"><span class="glyphicon glyphicon-pencil"></span> Full Name</label>
                   <input type="text" class="form-control" id="usrname" placeholder="Enter Full Name" ng-model="main.regData.fullname">
                 </div>
                 <div class="form-group">

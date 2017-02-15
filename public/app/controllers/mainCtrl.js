@@ -62,7 +62,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 				$timeout(function(){
 					angular.element('#myModal').modal('hide');
 					wrkspc();
-					$location.path('/profile');
+					$location.path('/myworkspace');
 					appl.loginData.username='';
 					appl.loginData.password='';
 					appl.message='';

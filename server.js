@@ -6,7 +6,7 @@ var bodyParser=require('body-parser');
 var router=express.Router();
 var appRoutes=require('./app/routes/api')(router);
 var path=require('path');
-var port=process.env.PORT||8080;
+var port=process.env.PORT||8000;
 var PythonShell=require('python-shell');
 
 
