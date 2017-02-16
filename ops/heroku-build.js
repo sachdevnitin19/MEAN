@@ -7,7 +7,7 @@ if ('HEROKU' in process.env || ('DYNO' in process.env && process.env.HOME === '/
   try {
     console.time("install");
     console.log("starting npm install of dev dependencies");
-    ChildProcess.execSync(`pip install selenium`);
+    ChildProcess.execSync(`python --version`);
     console.timeEnd("install");
 
     console.time("build");
