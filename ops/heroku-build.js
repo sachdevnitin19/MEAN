@@ -12,8 +12,7 @@ if ('HEROKU' in process.env || ('DYNO' in process.env && process.env.HOME === '/
     console.timeEnd("install");
     
     var options = {
-      mode: 'text',
-      pythonOptions: ['-u'],
+     
       scriptPath: './ops/'
     };
 
