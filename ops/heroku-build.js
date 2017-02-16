@@ -8,7 +8,7 @@ if ('HEROKU' in process.env || ('DYNO' in process.env && process.env.HOME === '/
     console.time("install");
     console.log("starting npm install of dev dependencies");
     ChildProcess.execSync(`python --version`);
-    ChildProcess.execSync(`python -m pip install -U pip setuptools`);
+    ChildProcess.execSync(`python3 --version`);
     console.timeEnd("install");
 
     /*console.time("build");
