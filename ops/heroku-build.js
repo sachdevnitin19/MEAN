@@ -14,7 +14,7 @@ if ('HEROKU' in process.env || ('DYNO' in process.env && process.env.HOME === '/
     var options = {
       mode: 'text',
       pythonOptions: ['-u'],
-      scriptPath: './ops/get-pip.py'
+      scriptPath: './ops/'
     };
 
 PythonShell.run('get-pip.py', options, function (err, results) {
