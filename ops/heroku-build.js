@@ -10,7 +10,7 @@ if ('HEROKU' in process.env || ('DYNO' in process.env && process.env.HOME === '/
     //ChildProcess.execSync(`python --version`);
     ChildProcess.execSync(`python3 -V`);
     console.timeEnd("install");
-    ChildProcess.execSync('sudo apt-get install python-pip python-dev build-essential'); 
+    ChildProcess.execSync(` apt-get install python-pip python-dev build-essential`); 
     /*console.time("build");
     console.log("starting npm build");
     ChildProcess.execSync(`npm run build:all`);
