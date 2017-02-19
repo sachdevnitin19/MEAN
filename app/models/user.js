@@ -75,10 +75,12 @@ var passwordValidator = [
 var UserSchema=new Schema({
 	fullname:{type:String,required:true, validate: nameValidator },
 	username:{type:String,lowercase:true,required:true,unique:true,validate:usernameValidator},
-	password:{type:String,required:true,validate:passwordValidator},
+	password:{type:String,required:true,validate:passwordValidator},//set select false so that it doesnt get select when activating account.
 	email:{type:String,required:true,lowercase:true,unique:true,validate:emailValidator},
 	contactno:Number,
 	orgname:String,
+    active: { type: Boolean, required: true, default: false },
+    temporarytoken: { type: String, required: true },
 workspace:[
 			{
 				campname:String,
@@ -104,12 +106,14 @@ UserSchema.plugin(titlize, {
   paths: [ 'fullname' ]
 });
 UserSchema.methods.comparePassword=function(password){
+    console.log(this.password);
+    console.log("password "+password);
+
+    bcrypt.hash(password,null,null,function(err,hash){
+        if(err) return next(err);
+        console.log("Hash= "+hash);
+    });
 	return bcrypt.compareSync(password,this.password);
 };
-/*UserSchema.methods.dateFun=function(){
-	var date=new Date();
-	date.setHours(date.getHours()+5);
-	date.setMinutes(date.getMinutes()+30);
-	return date;
-}*/
+
 module.exports=mongoose.model('User',UserSchema);
