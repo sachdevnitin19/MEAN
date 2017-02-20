@@ -8,7 +8,7 @@ var sgTransport = require('nodemailer-sendgrid-transport');
 
 module.exports=function(router){
 
-// api=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
+
 	 var options = {
         auth: {
             api_user: '', // Sendgrid username
