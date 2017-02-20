@@ -11,8 +11,8 @@ module.exports=function(router){
 // api=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
 	 var options = {
         auth: {
-            api_user: 'sachdevnitin19', // Sendgrid username
-            api_key: 'PAssword123!@#' // Sendgrid password
+            api_user: '', // Sendgrid username
+            api_key: '' // Sendgrid password
         }
     };
     var client = nodemailer.createTransport(sgTransport(options));

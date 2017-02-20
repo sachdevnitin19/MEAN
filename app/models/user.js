@@ -75,7 +75,7 @@ var passwordValidator = [
 var UserSchema=new Schema({
 	fullname:{type:String,required:true, validate: nameValidator },
 	username:{type:String,lowercase:true,required:true,unique:true,validate:usernameValidator},
-	password:{type:String,required:true,validate:passwordValidator},//set select false so that it doesnt get select when activating account.
+	password:{type:String,required:true,validate:passwordValidator, select:false},//set select false so that it doesnt get select when activating account.
 	email:{type:String,required:true,lowercase:true,unique:true,validate:emailValidator},
 	contactno:Number,
 	orgname:String,
