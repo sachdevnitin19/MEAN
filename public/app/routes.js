@@ -1,7 +1,7 @@
-var app=angular.module('appRoutes',['ngRoute','authServices','mainCtrl','angular-filepicker']);
+var app=angular.module('appRoutes',['ngRoute','authServices','mainCtrl','angular-filepicker','activate']);
 app.config(function($routeProvider,$locationProvider,filepickerProvider){
 	$routeProvider
-	
+
 	.when('/',{
 		templateUrl:'./app/views/pages/home.html'
 	})
@@ -26,7 +26,7 @@ app.config(function($routeProvider,$locationProvider,filepickerProvider){
 	.when('/myworkspace',{
 		templateUrl:'./app/views/pages/users/myworkspace.html',
 		authenticated:true,
-		
+
 	})
 	.when('/results',{
 		templateUrl:'./app/views/pages/users/results.html',
@@ -37,10 +37,16 @@ app.config(function($routeProvider,$locationProvider,filepickerProvider){
 		templateUrl:'./app/views/pages/users/newwrkspc.html',
 		authenticated:true
 	})
+	.when('/activate/:token',{
+		templateUrl:'./app/views/pages/users/activate.html',
+		controller:'activateCtrl',
+		controllerAs:'activate',
+		authenticated:false
+	})
 	.otherwise({redirectTo:'/'});
 
 	filepickerProvider.setKey('AUShvu37NQiOt12aaM8zrz');
-	
+
 	$locationProvider.html5Mode({// to remove # from links (noBase)
 		enabled:true,
 		requireBase:false
@@ -53,11 +59,11 @@ app.run(['$rootScope','authFactory','$location',function($rootScope,authFactory,
 			if(!auth.isLoggedIn()){
 				event.preventDefault();
 				$location.path('/');
-				
+
 					alert("you must login to view your profile");
 
-					
-				
+
+
 				//
 				//main.errormessage="Please login to view your profile";
 			}

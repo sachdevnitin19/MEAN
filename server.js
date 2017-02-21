@@ -19,8 +19,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public'));
 app.use('/api',appRoutes);
 mongoose.Promise = global.Promise;//to solve the promise warning after login.
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } }; 
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 
 
 mongoose.connect("mongodb://sachdevnitin19:database@ds131729.mlab.com:31729/nvrv",options,function(err){
@@ -54,12 +54,12 @@ shell.on('message', function (message) {
  ["./python/hello.py"]
  );
  var output = "";
- python.stdout.on('data', function(data){ 
+ python.stdout.on('data', function(data){
 
     output += data ;
     console.log(output+data+"from./python ");
 });
- python.on('close', function(code){ 
+ python.on('close', function(code){
 
    console.log("Here you are there..."+code);
  });

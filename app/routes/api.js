@@ -11,8 +11,8 @@ module.exports=function(router){
 
 	 var options = {
         auth: {
-            api_user: '', // Sendgrid username
-            api_key: '' // Sendgrid password
+            api_user: 'sachdevnitin19', // Sendgrid username
+            api_key: 'PAssword123!@#' // Sendgrid password
         }
     };
     var client = nodemailer.createTransport(sgTransport(options));
@@ -36,7 +36,7 @@ module.exports=function(router){
 		{
 			user.save(function(err){
 				if(err){
-					
+
 					  // Check if any validation errors exists (from user model)
                     if (err.errors !== undefined) {
                     	console.log(err.code);
@@ -52,7 +52,7 @@ module.exports=function(router){
                             res.json({ success: false, message: "Invalid Contactno" }); // Display any other errors with validation
                         }
                     } else if (err) {
-                    	
+
                         // Check if duplication error exists
                         if (err.code == 11000) {
                             if (err.errmsg[57] == "u") {
@@ -94,7 +94,7 @@ module.exports=function(router){
 				if(!req.body.password||!req.body.username)
 				{
 						res.json({success:false,mesage:"please enter all the fields"});
-						
+
 				}
 				else
 				{
@@ -120,21 +120,21 @@ module.exports=function(router){
 					{
 						res.json({success:false,message:"wrong password"});
 					}
-				}	
 				}
-				
+				}
+
 			});
 		});
-		
-		// Route to activate the user's account 
+
+		// Route to activate the user's account
     router.put('/activate/:token', function(req, res) {
         User.findOne({ temporarytoken: req.params.token }, function(err, user) {
             if (err)
             {
             	console.log("error:"+err);
-            } 
+            }
 
-            var token = req.params.token; // Save the token from URL for verification 
+            var token = req.params.token; // Save the token from URL for verification
 
             // Function to verify the user's token
             jwt.verify(token, secret, function(err, decoded) {
@@ -170,8 +170,8 @@ module.exports=function(router){
             });
         });
     });
-		
-		
+
+
 		/*below route middleware catches the req for '/api/me' and extracts the token from req body and verifies it using jwt.verify
 		method,after verifying it sends the decrypted info of token in req.decoded back to front end*/
 		router.use(function(req,res,next){
@@ -186,7 +186,7 @@ module.exports=function(router){
 					else
 					{
 						req.decoded=decoded;
-						
+
 						next();
 					}
 				})
@@ -200,7 +200,7 @@ module.exports=function(router){
 		router.post('/me',function(req,res){
 			res.send(req.decoded);
 		});
-		
+
 		router.put('/wrk',function(req,res){
 			if(!req.body.wrkData.campname||!req.body.wrkData.profile||!req.body.wrkData.prodesc)
 			{
@@ -208,7 +208,7 @@ module.exports=function(router){
 			}
 			else
 			{
-			    
+
 
 
 				User.findOneAndUpdate({username:req.decoded.username},
@@ -230,10 +230,10 @@ module.exports=function(router){
 				{
 					res.json({success:true,message:"successfully added your workspace"});
 				}
-			})	
+			})
 			}
 
-			
+
 		});
 		router.get('/wrkspc',function(req,res){
 			User.findOne({username:req.decoded.username}).select('workspace').exec(function(err,user){
@@ -241,6 +241,6 @@ module.exports=function(router){
 					res.send(user.workspace);
 			})
 		})
-		
+
 		return router;
 }

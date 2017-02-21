@@ -1,18 +1,19 @@
 var app=angular.module('mainCtrl',['authServices','angular-filepicker','userServices']);
 
 app.controller('mainController',function($http,$location,$timeout,$window,$rootScope,authFactory,authTokenFactory,filepickerService,userFactory){
+
 	var appl=this;
 	appl.loadMe=false;//this for loading body only when all angular data is collected.
 	$rootScope.$on('$routeChangeStart',function(){
-		
+
 		if(auth.isLoggedIn()){
-			
+
 			appl.loggedIn=true;
 			auth.profile().then(function(data){
 				appl.fullname=data.data.fullname;
-				appl.loadMe=true;	
+				appl.loadMe=true;
 			});
-		
+
 		}
 		else{
 			appl.loggedIn=false;
@@ -26,7 +27,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		{
 			var token={};
 		token.token=$window.localStorage.getItem('token');
-		
+
 		$http.post('/api/me',token).then(function(data){
 			console.log(data.data.fullname);
 			$scope.fullname=data.data.fullname;
@@ -40,6 +41,9 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 			//$q.reject({message:'user is not logged in'});
 		}
 	}*/
+	this.resend=function(){
+		console.log("resend");
+	};
 	this.logout=function(){
 		$location.path('/');
 		angular.element('#loading').modal();
@@ -50,7 +54,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 					$location.path('/');
 					angular.element('#loading').modal('hide');
 				},2000);
-		
+
 		//$location.path('/');
 	}
 	this.doLogin=function(loginData){
@@ -58,7 +62,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		auth.login(appl.loginData).then(function(data){//auth is factory object defined in userServices
 			if(data.data.success){
 				appl.message=data.data.message+"...Redirecting";
-				
+
 				$timeout(function(){
 					angular.element('#myModal').modal('hide');
 					wrkspc();
@@ -78,7 +82,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 	}
 	appl.obj={};
 	this.uploadexcel=function(){
-				
+
 				filepickerService.pick(
 				{
 					//mimetype:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -89,7 +93,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 				},
 				function(up){
 					appl.obj.excel=up;
-					
+
 				}
 
 					);
@@ -106,7 +110,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 				},
 				function(up){
 					appl.obj.zip=up;
-					
+
 				}
 
 					);
@@ -115,7 +119,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 	this.wrkfun=function(wrkData){
 		if(authToken.getToken())
 		{
-			
+
 			var tokenObj={};
 			tokenObj.token=authToken.getToken();
 			tokenObj.wrkData=this.wrkData;
@@ -125,14 +129,14 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
             tokenObj.wrkData.date=dte;
             tokenObj.resume=appl.obj.zip;
             tokenObj.excel=appl.obj.excel;
-			
-			
+
+
 
 			$http.put('/api/wrk',tokenObj).then(function(data){
-				
+
 				if(data.data.success)
 				{
-					
+
 					appl.message1=data.data.message+"...Redirecting";
 					$timeout(function(){
 					$location.path('/myworkspace');
@@ -142,7 +146,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 						tokenObj={};
 						appl.message1='';
 				},2500);
-					
+
 				}
 				else
 				{
@@ -187,5 +191,3 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 	}
 	wrkspc();
 });
-
-
