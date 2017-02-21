@@ -41,8 +41,10 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 			//$q.reject({message:'user is not logged in'});
 		}
 	}*/
-	this.resend=function(){
-		console.log("resend");
+	this.signup=function(){
+		console.log("dodal");
+		angular.element('#myModal').modal('hide');
+		angular.element('#mydodal').modal('show');
 	};
 	this.logout=function(){
 		$location.path('/');

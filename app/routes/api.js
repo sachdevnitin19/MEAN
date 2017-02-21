@@ -3,20 +3,18 @@ var jwt=require('jsonwebtoken');
 var secret= new Buffer("NITIN", "base64");
 var PythonShell=require('python-shell');
 var nodemailer=require('nodemailer');
-var sgTransport = require('nodemailer-sendgrid-transport');
 
 
 module.exports=function(router){
 
-
-	 var options = {
-        auth: {
-            api_user: 'sachdevnitin19', // Sendgrid username
-            api_key: 'PAssword123!@#' // Sendgrid password
-        }
-    };
-    var client = nodemailer.createTransport(sgTransport(options));
-
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+        user: "nvrv.smartrecruiter@gmail.com",
+        pass: "PAssword123!@#"
+    }
+});
 		router.post('/users',function(req,res){
 		var user= new User();
 		user.fullname=req.body.fullname
@@ -67,22 +65,22 @@ module.exports=function(router){
 				}
 				else{
  					var email = {
-                        from: 'Smart Recruiter Staff, smartrecruiter@gmail.com',
+                        from: 'Smart Recruiter Staff, nvrv.smartrecruiter@gmail.com',
                         to: user.email,
                         subject: 'Your Activation Link',
                         text: 'Hello ' + user.fullname + ', thank you for registering at nvrv.herokuapp.com. Please click on the following link to complete your activation: https://nvrv.herokuapp.com/activate/' + user.temporarytoken,
                         html: 'Hello<strong> ' + user.fullname + '</strong>,<br><br>Thank you for registering at nvrv.herokuapp.com. Please click on the link below to complete your activation:<br><br><a href="https://nvrv.herokuapp.com/activate/' + user.temporarytoken + '">Activate Account</a>'
                     };
-
-                     // Function to send e-mail to the user
-                    client.sendMail(email, function(err, info) {
-                        if (err) {
-                            console.log(err); // If error with sending e-mail, log to console/terminal
-                        } else {
-                            console.log(info); // Log success message to console if sent
-                            console.log(email); // Display e-mail that it was sent to
-                        }
-                    });
+					smtpTransport.sendMail(email,function(err,res){
+						if(err){
+							console.log(err);
+						}
+						else
+						{
+							console.log(res);
+							console.log(email);
+						}
+					})
 					res.json({success:true,message:"Account created successfully. Please check your email for activation link."});
 				}
 			})
@@ -148,9 +146,9 @@ module.exports=function(router){
                     // Mongoose Method to save user into the database
                     user.save(function(err) {
                         if (err) {
-                            console.log(err); // If unable to save user, log error info to console/terminal
+                            console.log(err); 
                         } else {
-                            // If save succeeds, create e-mail object
+                            
                             var email = {
                                 from: 'Smart Recruiter Staff, smartrecruiter@gmail.com',
                                 to: user.email,
@@ -159,11 +157,17 @@ module.exports=function(router){
                                 html: 'Hello<strong> ' + user.fullname + '</strong>,<br><br>Your account has been successfully activated!'
                             };
 
-                            // Send e-mail object to user
-                            client.sendMail(email, function(err, info) {
-                                if (err) console.log(err); // If unable to send e-mail, log error info to console/terminal
-                            });
-                            res.json({ success: true, message: 'Account activated!' }); // Return success message to controller
+                            smtpTransport.sendMail(email,function(err,res){
+								if(err){
+									console.log(err);
+								}
+								else
+								{
+									console.log(res);
+									console.log(email);
+								}
+							});
+                            res.json({ success: true, message: 'Account activated! Please Loggin.' }); // Return success message to controller
                         }
                     });
                 }
