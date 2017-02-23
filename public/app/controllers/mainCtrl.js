@@ -141,6 +141,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 
 					appl.message1=data.data.message+"...Redirecting";
 					$timeout(function(){
+						wrkspc();
 					$location.path('/myworkspace');
 						appl.wrkData.campname='';
 						appl.wrkData.profile='';
