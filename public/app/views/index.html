@@ -39,10 +39,13 @@
   .modal-footer {
       background-color: #222;
   }
+ 
   </style>
+  
   </head>
 
-  <body ng-app="myApp" ng-controller="mainController as main" ng-show="main.loadMe" ng-cloak><!-- ng-cloak is for loading body after collectin all angular data-->
+
+  <body id="body" ng-app="myApp" ng-controller="mainController as main" ng-show="main.loadMe" ng-cloak ><!-- ng-cloak is for loading body after collectin all angular data-->
 
     <!-- Fixed navbar -->
 
@@ -100,7 +103,7 @@
     <br>
     <br>
  <ng-view></ng-view>
- 
+
  <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
@@ -126,12 +129,15 @@
         </div>
         <div class="modal-footer">
           <div class="row show-hide-message" ng-show="main.message">
-            <div align="center" class="alert alert-success">{{main.message}}</div>
+            <div align="center" class="alert alert-success">{{main.message}}
+            </div>
           </div>
           <div class="row show-hide-message" ng-show="main.errormessage">
-            <div align="center" class="alert alert-danger">{{main.errormessage}}</div>
+            <div align="center" class="alert alert-danger">{{main.errormessage}}
+            </div>
+
           </div>
-            <p>Not a member? <a  class="custom-close" href="#" ng-click="main.signup()">Sign Up</a></p>
+            <p>Not a member? <a  class="custom-close" href="#mydodal" ng-click="main.signup()">Sign Up</a></p>
 
         </div>
     </div><!-- /.modal-content -->
@@ -140,12 +146,12 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="mydodal" role="dialog">
+<div class="modal fade" id="mydodal" tabindex="-1" role="dialog" aria-labelledby="mydodalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header" style="padding:15px 30px;">
-            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">&times;</button>
+            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" ng-click="main.pad()">&times;</button>
             <h4><span class="glyphicon glyphicon-lock"></span> Register</h4>
         </div>
         <div class="modal-body" style="padding:15px 30px;" >
@@ -201,8 +207,10 @@
              <div class="modal-header">
                  <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">&times;</button>
              </div>
-                 <div class="modal-body">
-                     Logging Out...
+                 <div class="modal-body text-center">
+                     <div class="dizzy-gillespie"></div>
+                     <h3>Logging Out...</h3>
+
                  </div>
                  <div class="modal-footer">
 
@@ -212,7 +220,6 @@
      </div>
 
      
-
 
 
 
@@ -232,5 +239,6 @@
 
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
+
 </body>
 </html>

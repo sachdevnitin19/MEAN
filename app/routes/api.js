@@ -12,7 +12,7 @@ var smtpTransport = nodemailer.createTransport({
     host: "smtp.gmail.com",
     auth: {
         user: "nvrv.smartrecruiter@gmail.com",
-        pass: "PAssword123!@#"
+        pass: "password123!@#"
     }
 });
 		router.post('/users',function(req,res){
@@ -174,12 +174,105 @@ var smtpTransport = nodemailer.createTransport({
             });
         });
     });
+	
+	router.put('/resend',function(req,res){
+		console.log(req.body);
+		if(!req.body.email) 
+			{
+				res.json({success:false,message:"Please enter a registered email address"});
+			}
+		else{
+			User.findOne({email:req.body.email},function(err,user){
+			if(err) console.log(err);
+			if(!user)
+			{
+				res.json({success:false,message:"Invalid Email address. Please enter the registered email address."})
+			}
+			else
+			{
+				user.temporarytoken = jwt.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
+				user.save(function(err){
+					if(err){
+						console.log(err);
+					} 
+					else
+					{
+						var email = {
+	                        from: 'Smart Recruiter Staff, nvrv.smartrecruiter@gmail.com',
+	                        to: user.email,
+	                        subject: 'Your Activation Link',
+	                        text: 'Hello ' + user.fullname + ', thank you for registering at nvrv.herokuapp.com. Please click on the following link to complete your activation: https://nvrv.herokuapp.com/activate/' + user.temporarytoken,
+	                        html: 'Hello<strong> ' + user.fullname + '</strong>,<br><br>Thank you for registering at nvrv.herokuapp.com. Please click on the link below to complete your activation:<br><br><a href="https://nvrv.herokuapp.com/activate/' + user.temporarytoken + '">Activate Account</a>'
+	                    };
+						smtpTransport.sendMail(email,function(err,res){
+							if(err){
+								console.log(err);
+							}
+							else
+							{
+								console.log(res);
+								console.log(email);
+							}
+						})
+						res.json({success:true,message:"Activation link has been sent to your email."})
+					}
 
+				})
+			}
+		})
+
+		}
+		
+	})
+	router.put('/forgot',function(req,res){
+		User.findOne({email:req.body.email},function(err,user){
+			if(err) console.log(err);
+			
+			if(!user)
+			{
+				res.json({success:false,message:"Invalid Email address. Please enter the registered email address."})
+			}
+			else
+			{
+				user.temporarytoken=jwt.sign({username:user.username,email:user.email,fullname:user.fullname},secret,{expiresIn:'24h'});
+				user.save(function(err){
+					if(err){
+						console.log(err);
+					}
+					else
+					{
+						var email = {
+                            from: 'Smart Recruiter Staff, smartrecruiter@gmail.com',
+                            to: user.email,
+                            subject: 'Forgot Password',
+                            text: 'Hello ' + user.fullname + ', Please click on the following link to reset your password:https://localhost:8000/forgotpwd/'+user.temporarytoken,
+                            html: 'Hello<strong> ' + user.fullname + ', Please click on the link below to complete your activation:<br><br><a href="https://nvrv.herokuapp.com/forgotpwd/' + user.temporarytoken + '">Reset Password</a>'
+                		};
+		        		 smtpTransport.sendMail(email,function(err,res){
+								if(err){
+									console.log(err);
+								}
+								else
+								{
+									console.log(res);
+									console.log(email);
+								}
+							});
+		        		 res.json({success:true,message:"Link to reset password has been sent to your email"});
+					}
+				})
+				
+	
+			}
+		})
+	})
+	
+	
 
 		/*below route middleware catches the req for '/api/me' and extracts the token from req body and verifies it using jwt.verify
 		method,after verifying it sends the decrypted info of token in req.decoded back to front end*/
 		router.use(function(req,res,next){
-			var token=req.body.token||req.body.query||req.headers['x-access-token']||req.headers['token'];
+			var token=req.body.token||req.body.query||req.query.token||req.headers['x-access-token']||req.headers['token'];
 			if(token)
 			{
 				jwt.verify(token,secret,function(err,decoded){
@@ -201,6 +294,26 @@ var smtpTransport = nodemailer.createTransport({
 			}
 		});
 
+		router.put('/forgotpwd',function(req,res){
+			User.findOne({username:req.decoded.username},function(err,user){
+				user.password=req.body.password;
+				user.save(function(err){
+					if(err)
+					{
+						if(err.errors.password)
+							res.json({ success: false, message: err.errors.password.message }); 
+						else
+						{
+							console.log(err);
+						}
+					}
+					else
+					{
+						res.json({success:true,message:"Password changed successfully"});
+					}
+				})
+			})
+		})
 		router.post('/me',function(req,res){
 			res.send(req.decoded);
 		});

@@ -16,12 +16,32 @@ app.controller('activateCtrl',function($routeParams,$timeout,$http){
     }
     else {
       appl.errormessage=data.data.message;
+      appl.resendbutton=true;
       angular.element('#activate').modal('show');
 
     }
   });
 appl.resend=function(){
-  console.log("resending email from activate controller");
+  appl.errormessage=false;
+  appl.resendbutton=false;
+  appl.resendmodal=true;
+}
+appl.resendmail=function(emaildata){
+  $http.put('/api/resend',this.emaildata).then(function(data){
+    if(data.data.success)
+    {
+      appl.message=data.data.message;
+      appl.resendmodal=false;
+      $timeout(function(){
+        angular.element('#activate').modal('hide');
+      },2000)
+      
+    }
+    else
+    {
+      appl.errormessage=data.data.message;
+    }
+  })
 }
 
 })

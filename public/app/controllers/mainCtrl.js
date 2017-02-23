@@ -42,10 +42,17 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		}
 	}*/
 	this.signup=function(){
-		console.log("dodal");
+		
 		angular.element('#myModal').modal('hide');
 		angular.element('#mydodal').modal('show');
+		
 	};
+	this.pad=function(){
+		$timeout(function(){
+			angular.element('#body').css('padding-right','0px');	
+		},312.13);
+		
+	}
 	this.logout=function(){
 		$location.path('/');
 		angular.element('#loading').modal();

@@ -111,16 +111,25 @@
             <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">&times;</button>
         </div>
             <div class="modal-body">
+            <div ng-show="activate.resendmodal">
+                 <form role="form" ng-submit="activate.resendmail(emaildata)">
+                    <div class="form-group">
+                      <label for="email"><span class="glyphicon glyphicon-envelope"></span> Emailid:</label>
+                      <input type="text" class="form-control" id="email" placeholder="Enter email" ng-model="activate.emaildata.email">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Resend activation mail.</button>
+                  </form>
+              </div>
               <div class="row show-hide-message" ng-show="activate.message">
                   <div align="center" class="alert alert-success">{{activate.message}}</div>
               </div>
               <div class="row show-hide-message" ng-show="activate.errormessage">
                  <div align="center" class="alert alert-danger">{{activate.errormessage}}</div>
-                 <div align="center">
+              </div>
+               <div align="center" ng-show="activate.resendbutton">
                     <button class="btn btn-info" type="button" ng-click="activate.resend()">Resend email</button>
                  </div>
-
-              </div>
+              
             </div>
             <div class="modal-footer">
 
@@ -129,7 +138,7 @@
     </div>
 </div>
 
-<div id="notactivate" class="modal fade" role="dialog">
+<!--<div id="notactivate" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <div class="modal-content">
@@ -151,4 +160,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
