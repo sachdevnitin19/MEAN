@@ -234,7 +234,7 @@ var smtpTransport = nodemailer.createTransport({
 			}
 			else
 			{
-				user.temporarytoken=jwt.sign({username:user.username,email:user.email,fullname:user.fullname},secret,{expiresIn:'24h'});
+				user.resettoken=jwt.sign({username:user.username,email:user.email,fullname:user.fullname},secret,{expiresIn:'24h'});
 				user.save(function(err){
 					if(err){
 						console.log(err);
@@ -242,11 +242,11 @@ var smtpTransport = nodemailer.createTransport({
 					else
 					{
 						var email = {
-                            from: 'Smart Recruiter Staff, smartrecruiter@gmail.com',
+                            from: 'Smart Recruiter Staff, nvrv.smartrecruiter@gmail.com',
                             to: user.email,
                             subject: 'Forgot Password',
-                            text: 'Hello ' + user.fullname + ', Please click on the following link to reset your password:https://localhost:8000/forgotpwd/'+user.temporarytoken,
-                            html: 'Hello<strong> ' + user.fullname + ', Please click on the link below to complete your activation:<br><br><a href="https://nvrv.herokuapp.com/forgotpwd/' + user.temporarytoken + '">Reset Password</a>'
+                            text: 'Hello ' + user.fullname + ', Please click on the following link to reset your password:https://nvrv.herokuapp.com/forgotpwd/'+user.resettoken,
+                            html: 'Hello<strong> ' + user.fullname + ', Please click on the link below to complete your activation:<br><br><a href="https://nvrv.herokuapp.com/forgotpwd/' + user.resettoken + '">Reset Password</a>'
                 		};
 		        		 smtpTransport.sendMail(email,function(err,res){
 								if(err){
@@ -267,7 +267,73 @@ var smtpTransport = nodemailer.createTransport({
 		})
 	})
 	
-	
+	router.put('/forgotpwd/:token',function(req,res){
+		if(!req.body.password)
+		{
+			res.json({success:false,message:"Please provide new password"});
+		}
+		else
+		{
+			User.findOne({resettoken:req.params.token},function(err,user){
+				token=req.params.token;
+
+				jwt.verify(token, secret, function(err, decoded) {
+	                if (err) 
+	                {
+	                    res.json({ success: false, message: 'Reset Password link has expired.' }); // Token is expired
+	                } 
+	                else if (!user) 
+	                {
+	                    res.json({ success: false, message: 'Reset Password link has expired.' }); // Token may be valid but does not match any user in the database
+	                }
+	                else 
+	                 {
+	                    user.resettoken = false; // Remove temporary token
+	                    user.password=req.body.password;
+	                    // Mongoose Method to save user into the database
+	                    user.save(function(err) {
+	                        if (err) 
+	                        {
+	                        	if(err.errors.password)
+	                        	{
+	                        		res.json({ success: false, message: err.errors.password.message }); 
+	                        	}
+								
+								else
+								{
+									console.log(err);
+								}
+	                            
+	                        } 
+	                        else {
+	                            
+	                            var email = {
+	                                from: 'Smart Recruiter Staff, nvrv.smartrecruiter@gmail.com',
+	                                to: user.email,
+	                                subject: 'Password Changed Successfully',
+	                                text: 'Hello ' + user.fullname + ', Your Password has been successfully Changed!',
+	                                html: 'Hello<strong> ' + user.fullname + '</strong>,<br><br>Your Password has been successfully Changed!'
+	                            };
+
+	                            smtpTransport.sendMail(email,function(err,res){
+									if(err){
+										console.log(err);
+									}
+									else
+									{
+										console.log(res);
+										console.log(email);
+									}
+								});
+	                            res.json({ success: true, message: 'Password changed successfully' }); // Return success message to controller
+	                        }
+	                    });
+	                }
+            	});
+			})			
+		}
+		})
+
 
 		/*below route middleware catches the req for '/api/me' and extracts the token from req body and verifies it using jwt.verify
 		method,after verifying it sends the decrypted info of token in req.decoded back to front end*/
@@ -294,26 +360,7 @@ var smtpTransport = nodemailer.createTransport({
 			}
 		});
 
-		router.put('/forgotpwd',function(req,res){
-			User.findOne({username:req.decoded.username},function(err,user){
-				user.password=req.body.password;
-				user.save(function(err){
-					if(err)
-					{
-						if(err.errors.password)
-							res.json({ success: false, message: err.errors.password.message }); 
-						else
-						{
-							console.log(err);
-						}
-					}
-					else
-					{
-						res.json({success:true,message:"Password changed successfully"});
-					}
-				})
-			})
-		})
+		
 		router.post('/me',function(req,res){
 			res.send(req.decoded);
 		});

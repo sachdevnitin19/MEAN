@@ -43,6 +43,12 @@ app.config(function($routeProvider,$locationProvider,filepickerProvider){
 		controllerAs:'activate',
 		authenticated:false
 	})
+	.when('/forgotpwd/:token',{
+		templateUrl:'./app/views/pages/users/forgotpwd.html',
+		controller:'forgotpwdCtrl',
+		controllerAs:'forgotpwd',
+		authenticated:false
+	})
 	.otherwise({redirectTo:'/'});
 
 	filepickerProvider.setKey('AUShvu37NQiOt12aaM8zrz');

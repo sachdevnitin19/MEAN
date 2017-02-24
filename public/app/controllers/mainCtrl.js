@@ -3,6 +3,7 @@ var app=angular.module('mainCtrl',['authServices','angular-filepicker','userServ
 app.controller('mainController',function($http,$location,$timeout,$window,$rootScope,authFactory,authTokenFactory,filepickerService,userFactory){
 
 	var appl=this;
+	
 	appl.loadMe=false;//this for loading body only when all angular data is collected.
 	$rootScope.$on('$routeChangeStart',function(){
 
@@ -47,6 +48,30 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		angular.element('#mydodal').modal('show');
 		
 	};
+	appl.forgotp=false;
+	
+	this.forgot=function(){
+		appl.forgot=false;
+		appl.forgotp=true;
+	}
+	this.forgotpwd=function(emailData){
+		
+		$http.put('/api/forgot',this.emailData).then(function(data){
+			if(data.data.success)
+			{
+				appl.message=data.data.message;
+				appl.errormessage=false;
+				
+				$timeout(function(){
+					angular.element('#myModal').modal('hide');
+				},2000)
+			}
+			else
+			{
+				appl.errormessage=data.data.message;
+			}
+		})
+	}
 	this.pad=function(){
 		$timeout(function(){
 			angular.element('#body').css('padding-right','0px');	

@@ -155,12 +155,12 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .googlebtn {
-    padding: 20px 40px;
+    padding: 6px 12px;
     border-color: #4682B4;
     border-radius: 3px;
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
+   font-size: 14px;
     font-weight: 700;
     color: #fff;
     background-color: #4682B4;
@@ -179,12 +179,13 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .passwordbtn {
-    padding: 20px 40px;
+    padding: 5px 10px;
     border-color: #2F4F4F;
     border-radius: 3px;
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 12px;
+    line-height: 1.5;
     font-weight: 700;
     color: #fff;
     background-color: #2F4F4F;

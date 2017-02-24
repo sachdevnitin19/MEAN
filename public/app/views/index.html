@@ -74,13 +74,13 @@
                     </li>
                     <li class="">
                        <!-- <a ng-show="!main.loggedIn" class="page-scroll btn btn-primary btn-sm" role="button" href="/login">Login</a>-->
-                       <a ng-show="!main.loggedIn" class="page-scroll btn btn-primary btn-sm" data-toggle="modal" role="button" href="#myModal">Login</a>
+                       <a ng-show="!main.loggedIn" class="page-scroll btn googlebtn btn-sm" data-toggle="modal" role="button" href="#myModal">Login</a>
                     </li>
                     <li class="">
                       &nbsp;
                     </li>
                     <li class="">
-                      <a class="btn btn-sm btn-primary" href="#mydodal" data-toggle="modal" role="button" ng-show="!main.loggedIn">Register</a>
+                      <a class="btn btn-sm googlebtn" href="#mydodal" data-toggle="modal" role="button" ng-show="!main.loggedIn">Register</a>
                     </li>
                    
                     <li class="">
@@ -113,7 +113,7 @@
          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:10px 50px;">
-           <form role="form" ng-submit="main.doLogin(loginData)">
+           <form role="form" ng-show="main.forgot" ng-submit="main.doLogin(loginData)">
               <div class="form-group">
                 <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
                 <input type="text" class="form-control" id="usrname" placeholder="Enter email" ng-model="main.loginData.username">
@@ -122,9 +122,16 @@
                 <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                 <input autocomplete="off" type="password" class="form-control" id="psw" placeholder="Enter password" ng-model="main.loginData.password">
               </div>
-              <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                <button type="submit" class="btn googlebtn btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
             </form>
 
+            <form role="form" ng-show="main.forgotp"  ng-submit="main.forgotpwd(emailData)">
+              <div class="form-group">
+                <label for="email"><span class="glyphicon glyphicon-envelope"></span> Emailid:</label>
+                <input type="text"  class="form-control" id="email" placeholder="Enter email" ng-model="main.emailData.email">
+              </div>
+                <button type="submit"  class="btn googlebtn btn-block"><span class="glyphicon glyphicon-envelope"></span>Send Email</button>
+            </form>
 
         </div>
         <div class="modal-footer">
@@ -137,7 +144,8 @@
             </div>
 
           </div>
-            <p>Not a member? <a  class="custom-close" href="#mydodal" ng-click="main.signup()">Sign Up</a></p>
+            <button class="btn  passwordbtn btn-sm pull-left" ng-show="main.forgot" ng-click="main.forgot()">Forgot Password?</button>
+            <p ng-show="main.forgot">Not a member? <a  class="custom-close" href="#mydodal" ng-click="main.signup()">Sign Up</a></p>
 
         </div>
     </div><!-- /.modal-content -->
@@ -235,7 +243,7 @@
     <script src="app/controllers/mainCtrl.js"></script>
     <script src="app/controllers/rating.js"></script>
     <script src="app/controllers/activate.js"></script>
-
+    <script src="app/controllers/forgotpwd.js"></script>
 
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
