@@ -110,13 +110,6 @@ UserSchema.plugin(titlize, {
   paths: [ 'fullname' ]
 });
 UserSchema.methods.comparePassword=function(password){
-    console.log(this.password);
-    console.log("password "+password);
-
-    bcrypt.hash(password,null,null,function(err,hash){
-        if(err) return next(err);
-        console.log("Hash= "+hash);
-    });
 	return bcrypt.compareSync(password,this.password);
 };
 

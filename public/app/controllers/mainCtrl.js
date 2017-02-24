@@ -80,7 +80,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 	}
 	this.logout=function(){
 		$location.path('/');
-		angular.element('#loading').modal();
+		angular.element('#loading').modal('show');
 		auth.logout();
 		appl.fullname='';
 		$timeout(function(){
@@ -89,7 +89,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 					angular.element('#loading').modal('hide');
 				},2000);
 
-		//$location.path('/');
+		main.pad();
 	}
 	this.doLogin=function(loginData){
 		appl.errormessage=false;

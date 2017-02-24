@@ -9,8 +9,10 @@ app.controller('forgotpwdCtrl',function($routeParams,$timeout,$http,$location){
 	      appl.message=data.data.message+"..Please Login.";
 	      $timeout(function(){
 	            angular.element('#forgot').modal('hide');
-	            angular.element('#myModal').modal('show');
+	        	angular.element('#myModal').modal('show');    
 	          },2000);
+	      //$location.path('/');
+	      
 	    }
 	    else
 	    {

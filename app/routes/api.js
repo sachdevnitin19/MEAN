@@ -104,7 +104,6 @@ var smtpTransport = nodemailer.createTransport({
 					if(!req.body.password)
 						res.json({success:false,mesage:"please enter password"});
 					var validPassword=user.comparePassword(req.body.password);
-					console.log(validPassword);
 					if(!user.active)
 					{
 						res.json({success:false,message:"Account not activated. Please activate your account."})
