@@ -12,7 +12,7 @@
 
     <!--<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     <link rel="shortcut icon" href="./app/views/favicon.ico" >
     <link href="lib/css/carousel.css" rel="stylesheet">
@@ -39,58 +39,57 @@
   .modal-footer {
       background-color: #222;
   }
- 
+  #back{
+    background-color: black;
+  }
   </style>
   
   </head>
 
 
-  <body id="body" ng-app="myApp" ng-controller="mainController as main" ng-show="main.loadMe" ng-cloak ><!-- ng-cloak is for loading body after collectin all angular data-->
+  <body id="body" ng-app="myApp" ng-controller="mainController as main" ng-show="main.loadMe" ng-cloak style="background-color:#555 !important;"><!-- ng-cloak is for loading body after collectin all angular data-->
 
     <!-- Fixed navbar -->
 
 
-    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink" >
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
+            <div class="navbar-header ">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="/">Smart Recruiter</a>
+                <a class="navbar-brand " href="/">Smart Recruiter</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden active">
-                        <a href="#page-top"></a>
+                    <li >
+                        <a class="" ng-show=false href="/profile">Profile</a>
                     </li>
-                    <li class="">
-                        <a class="page-scroll" ng-show=false href="/profile">Profile</a>
-                    </li>
-                    <li class="">
+                    <li >
                        <!-- <a ng-show="!main.loggedIn" class="page-scroll btn btn-primary btn-sm" role="button" href="/login">Login</a>-->
-                       <a ng-show="!main.loggedIn" class="page-scroll btn googlebtn btn-sm" data-toggle="modal" role="button" href="#myModal">Login</a>
+                       <a ng-show="!main.loggedIn" class=" btn googlebtn " data-toggle="modal" role="button" href="#myModal">Login</a>
                     </li>
-                    <li class="">
+                    <li >
                       &nbsp;
                     </li>
-                    <li class="">
+                    <li >
                       <a class="btn btn-sm googlebtn" href="#mydodal" data-toggle="modal" role="button" ng-show="!main.loggedIn">Register</a>
                     </li>
                    
-                    <li class="">
-                        <a ng-show="main.loggedIn" class="page-scroll" href="/myworkspace">My Workspace</a>
+                    <li >
+                        <a ng-show="main.loggedIn" class="" href="/myworkspace">My Workspace</a>
                     </li>
-                    <li class="">
-                        <a ng-show="main.loggedIn" class="page-scroll" href="/results">Results</a>
+                    <li >
+                        <a ng-show="main.loggedIn" class="" href="/results">Results</a>
                     </li>
-                    <li class="">
-                        <a ng-show="main.loggedIn" class="page-scroll" href="#" ng-click="main.logout();">Logout</a>
+                    <li >
+                        <a ng-show="main.loggedIn" class="" href="#" ng-click="main.logout();">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -99,10 +98,13 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    
     <br>
     <br>
-    <br>
- <ng-view></ng-view>
+    <div  ng-view style="padding-bottom:0px !important;"></div>
+           
+    
+ 
 
  <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

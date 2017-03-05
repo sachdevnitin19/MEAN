@@ -9,51 +9,55 @@
 </div>
 <br>
 <!-- Input For Filter  -->
-<div>
+<div class="row">
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon">Results to display:</span>
             <input type="text" class="form-control" ng-model="number" placeholder="Enter No of Results to Display e.g-'10' to show Top 10">
         </div>
+
     </div>
-</div>
-
-<!-- Container: Start -->
-<!--<div class="container">-->
-
-    <!-- Apply Button Filter -->
+     <div class="col-lg-6">
+          <!-- Apply Button Filter -->
     <button type="button" ng-click="management.showMore(number);" class="btn btn-success">Apply Filter</button>
 
     <!--/ Show All Button -->
     <button type="button" ng-click="management.showAll();" class="btn btn-warning">Show All</button>
     <!-- Input For Filter  -->
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-md-4">
-        <div class="form-group">
-            <input type="text" class="form-control" name="searchByUsername"  ng-model="searchByUsername">
-        </div>
-            
-        </div>
-       <div class="col-md-4 dropdown">
-            <!--<div class="form-group">
-                <input type="text" class="form-control" name="searchByUsername" placeholder="search by name" ng-model="searchByUsername">
-                <button type="button" class="btn btn-default">Name</button>
-                <input type="text" class="form-control" placeholder="eg-JAVA,C,etc.">
-                <button type="button" class="btn btn-default">Programming Languages</button>
-                <input type="text" class="form-control" placeholder="eg-8.00">
-                <button type="button" class="btn btn-default">C.G.P.A</button>
-            </div>-->
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Filter
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="#">Name</a></li>
-                <li><a href="#">Programming Skills</a></li>
-                <li><a href="#">C.G.P.A</a></li>
-              </ul>
-        </div>
+     </div>
 </div>
+
+<!-- Container: Start -->
+<!--<div class="container">-->
+<br>
+    <div>
+        <div class="row">
+            
+            <div class="col-lg-6 form-group">
+                <input type="text" class="form-control" name="searchByUsername"  ng-model="searchByUsername">
+            </div>
+                
+            
+           <div class="col-lg-6 dropdown">
+                <!--<div class="form-group">
+                    <input type="text" class="form-control" name="searchByUsername" placeholder="search by name" ng-model="searchByUsername">
+                    <button type="button" class="btn btn-default">Name</button>
+                    <input type="text" class="form-control" placeholder="eg-JAVA,C,etc.">
+                    <button type="button" class="btn btn-default">Programming Languages</button>
+                    <input type="text" class="form-control" placeholder="eg-8.00">
+                    <button type="button" class="btn btn-default">C.G.P.A</button>
+                </div>-->
+                  <button class="btn googlebtn dropdown-toggle" type="button" data-toggle="dropdown">Select Filter
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Name</a></li>
+                    <li><a href="#">Programming Skills</a></li>
+                    <li><a href="#">C.G.P.A</a></li>
+                  </ul>
+            </div>
+        </div>
+    </div>
+    
       
 <!--</div>-->
 

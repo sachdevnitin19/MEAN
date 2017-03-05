@@ -266,6 +266,26 @@ var smtpTransport = nodemailer.createTransport({
 		})
 	})
 	
+	router.get('/check/:token',function(req,res){
+		User.findOne({resettoken:req.params.token},function(err,user){
+			token=req.params.token;
+			jwt.verify(token, secret, function(err, decoded) {
+	                if (err) 
+	                {
+	                    res.json({ success: false, message: 'Reset Password link has expired.' }); // Token is expired
+	                } 
+	                else if (!user) 
+	                {
+	                    res.json({ success: false, message: 'Reset Password link has expired.' }); // Token may be valid but does not match any user in the database
+	                }
+	                else
+	                {
+	                	res.json({success:true});
+	                }
+			})
+		})
+	})
+
 	router.put('/forgotpwd/:token',function(req,res){
 		if(!req.body.password)
 		{

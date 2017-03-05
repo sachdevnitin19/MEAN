@@ -89,7 +89,7 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 					angular.element('#loading').modal('hide');
 				},2000);
 
-		main.pad();
+		//main.pad();
 	}
 	this.doLogin=function(loginData){
 		appl.errormessage=false;
