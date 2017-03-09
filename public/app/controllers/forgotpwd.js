@@ -1,5 +1,5 @@
-var app=angular.module('forgotpwd',[]);
-app.controller('forgotpwdCtrl',function($routeParams,$timeout,$http,$location){
+var app=angular.module('forgotpwd',['toaster']);
+app.controller('forgotpwdCtrl',function($routeParams,toaster,$timeout,$http,$location){
 	appl=this;
 	
 	$http.get('/api/check/'+$routeParams.token).then(function(data){
@@ -9,27 +9,22 @@ app.controller('forgotpwdCtrl',function($routeParams,$timeout,$http,$location){
 		else{
 			appl.check=true;
 			angular.element('#forgot').modal('show');
-			appl.errormessage=data.data.message;
-			$timeout(function(){
-				angular.element('#forgot').modal('hide');	
-			},2000)	
+			toaster.error(data.data.message);
+			angular.element('#forgot').modal('hide');	
 		}
 	});
 	appl.forgotfun=function(pwdData){
 	$http.put('/api/forgotpwd/'+$routeParams.token,this.pwdData).then(function(data){
 	    if (data.data.success) {
-	    	appl.errormessage=false;
-	      appl.message=data.data.message+"..Please Login.";
-	      $timeout(function(){
-	            angular.element('#forgot').modal('hide');
-	        	angular.element('#myModal').modal('show');    
-	          },2000);
+	      	toaster.success(data.data.message+". Please login.");
+	        angular.element('#forgot').modal('hide');
+	    	angular.element('#myModal').modal('show');
 	      //$location.path('/');
 	      
 	    }
 	    else
 	    {
-	      appl.errormessage=data.data.message;
+	      toaster.error(data.data.message);
 	    }
   });
 	}

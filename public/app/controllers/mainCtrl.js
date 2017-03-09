@@ -55,20 +55,15 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 		appl.forgotp=true;
 	}
 	this.forgotpwd=function(emailData){
-		
 		$http.put('/api/forgot',this.emailData).then(function(data){
 			if(data.data.success)
 			{
-				appl.message=data.data.message;
-				appl.errormessage=false;
-				
-				$timeout(function(){
-					angular.element('#myModal').modal('hide');
-				},2000)
+				toaster.success(data.data.message);
+				angular.element('#myModal').modal('hide');
 			}
 			else
 			{
-				appl.errormessage=data.data.message;
+				toaster.error(data.data.message);
 			}
 		})
 	}
@@ -151,6 +146,14 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 			if(this.wrkData==undefined||this.wrkData.campname==undefined||this.wrkData.profile==undefined||this.wrkData.prodesc==undefined)
 			{
 				toaster.error("Please enter all the fields.");	        
+			}
+			else if(appl.obj.excel==undefined)
+			{
+				toaster.error("Error!","Please upload excel file containing candidate's details.");
+			}
+			else if(appl.obj.zip==undefined)
+			{
+				toaster.error("Error!","Please upload zip file containing candidate's resume.");
 			}
 			else
 			{
