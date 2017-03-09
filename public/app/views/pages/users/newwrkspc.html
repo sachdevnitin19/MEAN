@@ -1,37 +1,55 @@
-
-<div class="container">
-<div class="page-header">
-	<h1>Recruitment Process Details</h1>
+<br>
+<div class="container well">
+<div class="page-header text-center">
+	<h1>Create new workspace</h1>
 </div>
 
 <!--ng-submit tells angular which function to call when submitting form and pass form data-->
-<form ng-submit="main.wrkfun(wrkData)">
-	<label>Campus Name:</label>
-	<input autofocus class="form-control" type="text" placeholder="eg-V.E.S.I.T" ng-model="main.wrkData.campname">
-	<br>
-	<label>Profile:</label>
-	<input class="form-control" type="text" placeholder="eg-Software Developer" ng-model="main.wrkData.profile">
-	<br>
-	<label>Profile Description:</label>
-	<textarea class="form-control" type="textarea" placeholder="Describe the requirements for the profile" ng-model="main.wrkData.prodesc"></textarea>
-	<br>
-	<label>Please Upload Excel Spreadsheet file containing candidate's details</label>
-	<br>
-	<button type="button" class="btn btn-info" ng-click="main.uploadzip()">Choose .zip File</button>
-	<br>
-	<label>Please zip file containing candidate's resume.</label>
-	<br>
-	 <button type="button" class="btn btn-info" ng-click="main.uploadexcel()">Choose .XSLX File</button>	
-	<br>
-	<br>
-	<a class="btn btn-danger" href="/myworkspace">Cancel</a>
-	<button class="btn btn-primary" type="submit">Submit</button>
+<form class="form-horizontal " ng-submit="main.wrkfun(wrkData)" style="padding-right:40px !important; padding-left:40px !important;">
+	<fieldset>
+		<legend>Enter recruitment process details:</legend>
+		<div class="form-group">
+		<label class="col-lg-2 control-label">Campus Name:</label>
+		<div class="col-lg-10">
+		<input autofocus class="form-control" type="text" placeholder="eg-V.E.S.I.T" ng-model="main.wrkData.campname">
+		</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Profile:</label>
+			<div class="col-lg-10">
+				<input class="form-control" type="text" placeholder="eg-Software Developer" ng-model="main.wrkData.profile">	
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Profile Description:</label>
+			<div class="col-lg-10">
+				<textarea class="form-control" type="textarea" placeholder="Describe the requirements for the profile" ng-model="main.wrkData.prodesc"></textarea>	
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+					<label class=" control-label">Upload candidate's details: </label>
+					<button type="button" class="btn btn-info" ng-click="main.uploadexcel()"> .XSLX File</button>
+					<br>
+					<br>	
+				</div>
+				<div class="col-md-4">
+					<label class=" control-label">Upload candidate's resume: </label>				
+					<button type="button" class="btn btn-info" ng-click="main.uploadzip()" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Upload a spredsheet file containing candidate's details"> .zip File</button>
+
+				</div>	
+				<div class="col-md-2"></div>	
+			</div>
+			
+		</div>
+		<br>
+		<div class="form-group" ng-if="!main.message1">
+			<a class="btn btn-danger btn-lg col-md-offset-5" href="/myworkspace">Cancel</a>
+			<button class="btn btn-lg btn-primary " type="submit">Create</button>	
+		</div>
+	</fieldset>
 </form>
-<br>
-<div class="row show-hide-message" ng-show="main.message1">
-	<div class="alert alert-success">{{main.message1}}</div>
-</div>
-<div class="row show-hide-message" ng-show="main.errormessage1">
-	<div class="alert alert-danger">{{main.errormessage1}}</div>
-</div>
 </div>

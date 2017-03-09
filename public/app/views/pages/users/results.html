@@ -19,10 +19,10 @@
     </div>
      <div class="col-lg-6">
           <!-- Apply Button Filter -->
-    <button type="button" ng-click="management.showMore(number);" class="btn btn-success">Apply Filter</button>
+    <button type="button" ng-click="management.showMore(number);" class="btn btn-primary">Apply Filter</button>
 
     <!--/ Show All Button -->
-    <button type="button" ng-click="management.showAll();" class="btn btn-warning">Show All</button>
+    <button type="button" ng-click="management.showAll();" class="btn btn-primary">Show All</button>
     <!-- Input For Filter  -->
      </div>
 </div>
@@ -47,7 +47,7 @@
                     <input type="text" class="form-control" placeholder="eg-8.00">
                     <button type="button" class="btn btn-default">C.G.P.A</button>
                 </div>-->
-                  <button class="btn googlebtn dropdown-toggle" type="button" data-toggle="dropdown">Select Filter
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Filter
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <li><a href="#">Name</a></li>
@@ -68,12 +68,13 @@
 <br>
 
 <!-- User Management Table -->
-<div class="panel panel-primary">
+<div class="panel panel-info">
     <!-- Heading -->
-    <div class="panel-heading">
+    <div class="panel-heading text-center">
         <strong>Candidate Ranking List</strong>
     </div>
-    <!-- Start: Table -->
+    <div class='panel-body'>
+      <!-- Start: Table -->
     <table class="table">
         <tr>
             <th>Rank</th>
@@ -134,7 +135,9 @@
             
         </tr>
         <!-- End: Table -->
-    </table>
+    </table>  
+    </div>
+    
 </div>
 <!-- User Management Table -->
 </div>

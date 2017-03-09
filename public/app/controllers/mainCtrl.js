@@ -1,6 +1,6 @@
-var app=angular.module('mainCtrl',['authServices','angular-filepicker','userServices']);
+var app=angular.module('mainCtrl',['authServices','angular-filepicker','userServices','toaster','ngAnimate']);
 
-app.controller('mainController',function($http,$location,$timeout,$window,$rootScope,authFactory,authTokenFactory,filepickerService,userFactory){
+app.controller('mainController',function($http,$scope,$location,$timeout,toaster,$window,$rootScope,authFactory,authTokenFactory,filepickerService,userFactory){
 
 	var appl=this;
 	
@@ -95,22 +95,17 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		appl.errormessage=false;
 		auth.login(appl.loginData).then(function(data){//auth is factory object defined in userServices
 			if(data.data.success){
-				appl.message=data.data.message+"...Redirecting";
-
-				$timeout(function(){
-					angular.element('#myModal').modal('hide');
-					wrkspc();
-					$location.path('/myworkspace');
-					appl.loginData.username='';
-					appl.loginData.password='';
-					appl.message='';
-				},2000);
+				toaster.pop('success',data.data.message);
+				angular.element('#myModal').modal('hide');
+				wrkspc();
+				$location.path('/myworkspace');
+				appl.loginData.username='';
+				appl.loginData.password='';
 				//$location.path('/profile');
-
 			}
 			else
 			{
-				appl.errormessage=data.data.message;
+				toaster.error(data.data.message);
 			}
 		});
 	}
@@ -153,41 +148,44 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 	this.wrkfun=function(wrkData){
 		if(authToken.getToken())
 		{
+			if(this.wrkData==undefined||this.wrkData.campname==undefined||this.wrkData.profile==undefined||this.wrkData.prodesc==undefined)
+			{
+				toaster.error("Please enter all the fields.");	        
+			}
+			else
+			{
+				var tokenObj={};
+				tokenObj.token=authToken.getToken();
+				tokenObj.wrkData=this.wrkData;
+				var dte=new Date();
+				dte.setHours(dte.getHours()+5);
+	            dte.setMinutes(dte.getMinutes()+30);
+	            tokenObj.wrkData.date=dte;
+	            tokenObj.resume=appl.obj.zip;
+	            tokenObj.excel=appl.obj.excel;
 
-			var tokenObj={};
-			tokenObj.token=authToken.getToken();
-			tokenObj.wrkData=this.wrkData;
-			var dte=new Date();
-			dte.setHours(dte.getHours()+5);
-            dte.setMinutes(dte.getMinutes()+30);
-            tokenObj.wrkData.date=dte;
-            tokenObj.resume=appl.obj.zip;
-            tokenObj.excel=appl.obj.excel;
 
 
+				$http.put('/api/wrk',tokenObj).then(function(data){
 
-			$http.put('/api/wrk',tokenObj).then(function(data){
-
-				if(data.data.success)
-				{
-
-					appl.message1=data.data.message+"...Redirecting";
-					$timeout(function(){
+					if(data.data.success)
+					{
+						$location.path('/myworkspace');
+					    toaster.pop('success', data.data.message); 
 						wrkspc();
-					$location.path('/myworkspace');
 						appl.wrkData.campname='';
 						appl.wrkData.profile='';
 						appl.wrkData.prodesc='';
 						tokenObj={};
 						appl.message1='';
-				},2500);
-
-				}
-				else
-				{
-					appl.errormessage1=data.data.message;
-				}
-			})
+					}
+					else
+					{
+					    toaster.pop('error', data.data.message);
+					}
+				})
+			}
+			
 		}
 	}
 
@@ -195,15 +193,13 @@ app.controller('mainController',function($http,$location,$timeout,$window,$rootS
 		appl.regerrormessage=false;
 		regFac.create(this.regData).then(function(data){//regFac is factory object defined in userServices
 			if(data.data.success){
-				appl.regmessage=data.data.message;
-				$timeout(function(){
-					angular.element('#mydodal').modal('hide');
-					$location.path('/');
-				},2000);
+				toaster.pop('success', data.data.message); 
+				angular.element('#mydodal').modal('hide');
+				$location.path('/');
 			}
 			else
 			{
-				appl.regerrormessage=data.data.message;
+				toaster.pop('error',data.data.message);
 			}
 		});
 	};

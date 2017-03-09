@@ -10,10 +10,10 @@
     <meta name="author" content="">
     <title>Smart Recruiter</title>
 
-    <!--<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="lib/css/bootstrapcerulean.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
     <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">-->
-    <link rel="stylesheet" type="text/css" href="lib/css/style.css">
+    <!--<link rel="stylesheet" type="text/css" href="lib/css/style.css">-->
     <link rel="shortcut icon" href="./app/views/favicon.ico" >
     <link href="lib/css/carousel.css" rel="stylesheet">
 
@@ -28,31 +28,32 @@
     <script src="./bower_components/angular-filepicker/dist/angular_filepicker.js"></script>
 
     <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.4.0.js"></script>-->
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.js"></script>
     <style>
   .modal-header, h4, .close {
-      background-color: #222;
+      background-color:#164171;
       color:white !important;
       text-align: center;
       font-size: 30px;
   }
   .modal-footer {
-      background-color: #222;
+      background-color: #164171;
   }
-  #back{
-    background-color: black;
+  body{
+    padding-bottom: 0px !important;
   }
   </style>
   
   </head>
 
 
-  <body id="body" ng-app="myApp" ng-controller="mainController as main" ng-show="main.loadMe" ng-cloak style="background-color:#555 !important;"><!-- ng-cloak is for loading body after collectin all angular data-->
+  <body id="body" ng-app="myApp" ng-controller="mainController as main" ng-show="main.loadMe" ng-cloak ><!-- ng-cloak is for loading body after collectin all angular data-->
 
     <!-- Fixed navbar -->
 
 
-    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink" >
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-shrink" >
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header ">
@@ -73,13 +74,13 @@
                     </li>
                     <li >
                        <!-- <a ng-show="!main.loggedIn" class="page-scroll btn btn-primary btn-sm" role="button" href="/login">Login</a>-->
-                       <a ng-show="!main.loggedIn" class=" btn googlebtn " data-toggle="modal" role="button" href="#myModal">Login</a>
+                       <a ng-show="!main.loggedIn" class=" btn " data-toggle="modal" role="button" href="#myModal">Login</a>
                     </li>
                     <li >
                       &nbsp;
                     </li>
                     <li >
-                      <a class="btn btn-sm googlebtn" href="#mydodal" data-toggle="modal" role="button" ng-show="!main.loggedIn">Register</a>
+                      <a class="btn" href="#mydodal" data-toggle="modal" role="button" ng-show="!main.loggedIn">Register</a>
                     </li>
                    
                     <li >
@@ -101,16 +102,16 @@
     
     <br>
     <br>
-    <div  ng-view style="padding-bottom:0px !important;"></div>
+    <div  ng-view ></div>
            
     
- 
+ <toaster-container toaster-options="{'time-out':4000,'close-button':true}"></toaster-container>
 
  <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-        <div class="modal-header" style="padding:10px 50px;">
+        <div class="modal-header text-center" style="padding:10px 50px;">
           <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
@@ -124,7 +125,7 @@
                 <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                 <input autocomplete="off" type="password" class="form-control" id="psw" placeholder="Enter password" ng-model="main.loginData.password">
               </div>
-                <button type="submit" class="btn googlebtn btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Login</button>
             </form>
 
             <form role="form" ng-show="main.forgotp"  ng-submit="main.forgotpwd(emailData)">
@@ -137,16 +138,7 @@
 
         </div>
         <div class="modal-footer">
-          <div class="row show-hide-message" ng-show="main.message">
-            <div align="center" class="alert alert-success">{{main.message}}
-            </div>
-          </div>
-          <div class="row show-hide-message" ng-show="main.errormessage">
-            <div align="center" class="alert alert-danger">{{main.errormessage}}
-            </div>
-
-          </div>
-            <button class="btn  passwordbtn btn-sm pull-left" ng-show="main.forgot" ng-click="main.forgot()">Forgot Password?</button>
+            <button class="btn  btn-info btn-sm pull-left" ng-show="main.forgot" ng-click="main.forgot()">Forgot Password?</button>
             <p ng-show="main.forgot">Not a member? <a  class="custom-close" href="#mydodal" ng-click="main.signup()">Sign Up</a></p>
 
         </div>
@@ -160,7 +152,7 @@
   <div class="modal-dialog modal-md">
     <!-- Modal content-->
     <div class="modal-content">
-        <div class="modal-header" style="padding:15px 30px;">
+        <div class="modal-header text-center" style="padding:15px 30px;">
             <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" ng-click="main.pad()">&times;</button>
             <h4><span class="glyphicon glyphicon-lock"></span> Register</h4>
         </div>
@@ -192,18 +184,12 @@
                   <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                   <input autocomplete="off" type="password" class="form-control" id="psw" placeholder="Enter Password" ng-model="main.regData.password">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Register</button>
+                <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Register</button>
             </form>
 
 
         </div>
         <div class="modal-footer">
-          <div class="row show-hide-message" ng-show="main.regmessage">
-              <div align="center" class="alert alert-success">{{main.regmessage}}</div>
-          </div>
-          <div class="row show-hide-message" ng-show="main.regerrormessage">
-             <div align="center" class="alert alert-danger">{{main.regerrormessage}}</div>
-          </div>
         </div>
     </div>
 

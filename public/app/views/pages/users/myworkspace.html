@@ -3,32 +3,37 @@
 <div class="page-header">
 	<h1 align="center">Workspace</h1>
 </div>
-<a class="btn btn-primary btn-lg " href="/newwrkspc"><span class="glyphicon glyphicon-briefcase"></span> add new workspace</a>
+<a class="btn btn-primary btn-lg btn-block " href="/newwrkspc"><span class="glyphicon glyphicon-briefcase"></span> Add new workspace</a>
 <br>
 <br>
 
 <!-- Workspace Management Table -->
-<div class="panel panel-primary" ng-show="main.wrkboo">
+<div class="panel panel-info" ng-show="main.wrkboo">
     <!-- Heading -->
-    <div class="panel-heading ">
-        <strong>Workspace Management</strong>
+    <div class="panel-heading text-center ">
+        <strong>Workspaces </strong>
     </div>
-    <!-- Start: Table -->
+    <div class="panel-body">
+      <!-- Start: Table -->
     <table class="table">
         <tr>
             <th>Campus Name</th>
             <th>Profile</th>
             <th>Profile Description</th>
             <th>Date Created</th>
+            <th></th>
         </tr>
         <tr ng-repeat="i in main.wrk">
             <td>{{ i.campname }}</td>
             <td>{{ i.profile }}</td>
             <td>{{ i.prodesc }}</td>
             <td>{{i.datecreated1}}</td>
+            <td><button class="btn btn-sm btn-warning">Edit</button> <button class="btn btn-sm btn-danger">Delete</button></td>
         </tr>
         <!-- End: Table -->
-    </table>
+    </table>  
+    </div>
+    
 </div>
 <!-- Workspace Management Table -->
 </div>
