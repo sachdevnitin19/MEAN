@@ -48,9 +48,14 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 		angular.element('#mydodal').modal('show');
 		
 	};
+	appl.forgot=true;
 	appl.forgotp=false;
-	
-	this.forgot=function(){
+	this.reinit=function(){
+		appl.forgot=true;
+		appl.forgotp=false;
+	}
+	this.forgotfun=function(){
+		console.log("pressed ");
 		appl.forgot=false;
 		appl.forgotp=true;
 	}
@@ -60,6 +65,9 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 			{
 				toaster.success(data.data.message);
 				angular.element('#myModal').modal('hide');
+				appl.forgotp=false;
+				appl.forgot=true;
+				appl.emailData.email="";
 			}
 			else
 			{
@@ -213,7 +221,7 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 		tokenObj.token=authToken.getToken();
 		$http.get('/api/wrkspc',{headers:tokenObj}).then(function(data){
 			appl.wrk=data.data;
-			if(appl.wrk)
+			if(appl.wrk!=0)
 				appl.wrkboo=true;
 			/*var date=new Date(appl.wrk[0].datecreated1);
 			console.log(date);

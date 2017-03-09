@@ -1,9 +1,13 @@
 <div class="container">
 
-<div class="page-header">
-	<h1 align="center">Workspace</h1>
+<div class="jumbotron text-center">
+	<h2 align="center">Workspace Management</h1>
+    <hr>
+    <p>Here you can mange your previous workspaces and add new workspace.</p>
+    <hr>
+    <a class="btn btn-primary btn-lg btn-block " href="/newwrkspc"><span class="glyphicon glyphicon-briefcase"></span> Add new workspace</a>
 </div>
-<a class="btn btn-primary btn-lg btn-block " href="/newwrkspc"><span class="glyphicon glyphicon-briefcase"></span> Add new workspace</a>
+
 <br>
 <br>
 
@@ -33,7 +37,10 @@
         <!-- End: Table -->
     </table>  
     </div>
-    
+</div>
+<div class="well text-center" ng-show="!main.wrkboo">
+    <h2>You have no previous workspace !!!!</h2>
+    <p> Add a new workspace. </p>
 </div>
 <!-- Workspace Management Table -->
 </div>
