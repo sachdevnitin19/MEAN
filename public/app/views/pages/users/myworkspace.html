@@ -27,12 +27,12 @@
             <th>Date Created</th>
             <th></th>
         </tr>
-        <tr ng-repeat="i in main.wrk">
+        <tr ng-repeat="i in main.wrk track by i._id">
             <td>{{ i.campname }}</td>
             <td>{{ i.profile }}</td>
             <td>{{ i.prodesc }}</td>
             <td>{{i.datecreated1}}</td>
-            <td><button class="btn btn-sm btn-warning">Edit</button> <button class="btn btn-sm btn-danger">Delete</button></td>
+            <td><button class="btn btn-sm btn-danger" ng-click="main.del(i._id)">Delete</button></td>
         </tr>
         <!-- End: Table -->
     </table>  

@@ -122,7 +122,28 @@ var smtpTransport = nodemailer.createTransport({
 
 			});
 		});
+		
+		router.put('/del',function(req,res){
+			console.log("del");
+			User.findOne({username:req.body.username},
+				function(err,user){
+					if(err) 
+						console.log(err);
+					else
+					{	
 
+						user.workspace.pull({_id:req.body._id});
+						user.save(function(err){
+							if(err)
+								console.log(err);
+							else
+							{
+								res.json({success:true,message:"removed workspace successfully"});
+							}
+						})
+					}
+			})
+		});
 		// Route to activate the user's account
     router.put('/activate/:token', function(req, res) {
         User.findOne({ temporarytoken: req.params.token }, function(err, user) {

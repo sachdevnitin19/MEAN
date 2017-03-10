@@ -1,9 +1,8 @@
 var app=angular.module('mainCtrl',['authServices','angular-filepicker','userServices','toaster','ngAnimate']);
 
-app.controller('mainController',function($http,$scope,$location,$timeout,toaster,$window,$rootScope,authFactory,authTokenFactory,filepickerService,userFactory){
+app.controller('mainController',function($http,$scope,$interval,$location,$timeout,toaster,$window,$rootScope,authFactory,authTokenFactory,filepickerService,userFactory){
 
 	var appl=this;
-	
 	appl.loadMe=false;//this for loading body only when all angular data is collected.
 	$rootScope.$on('$routeChangeStart',function(){
 
@@ -12,6 +11,7 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 			appl.loggedIn=true;
 			auth.profile().then(function(data){
 				appl.fullname=data.data.fullname;
+				appl.username=data.data.username;
 				appl.loadMe=true;
 			});
 
@@ -214,6 +214,23 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 			}
 		});
 	};
+	this.del=function(abc){
+		var delObj={};
+		delObj.username=appl.username;
+		delObj._id=abc;
+		$http.put('/api/del',delObj).then(function(data){
+			if(data.data.success)
+			{
+				toaster.success(data.data.message);
+				wrkspc();
+				$location.path('/myworkspace');
+			}
+			else
+			{
+				toaster.error("error occurred");
+			}
+		})
+	}
 	appl.wrk=[];
 	appl.wrkboo=false
 	function wrkspc(){
@@ -223,6 +240,8 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 			appl.wrk=data.data;
 			if(appl.wrk!=0)
 				appl.wrkboo=true;
+			console.log(appl.wrk);
+			
 			/*var date=new Date(appl.wrk[0].datecreated1);
 			console.log(date);
 			console.log(appl.wrk[0].datecreated1);
@@ -232,4 +251,6 @@ app.controller('mainController',function($http,$scope,$location,$timeout,toaster
 		})
 	}
 	wrkspc();
+
+	
 });
