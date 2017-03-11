@@ -62,14 +62,18 @@
       <!-- Start: Table -->
     <table class="table">
         <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>work</th>
+            <th class="col-md-2">Image</th>
+            <th class="col-md-2">Name</th>
+            <th class="col-md-3">Work</th>
+            <th class="col-md-2">Stackoverflow Reputation</th>
+            <th class="col-md-3">Stackoverflow Tags</th>
         </tr>
         <tr ng-repeat="i in resultObj track by $index">
             <td><img src="{{i.profile_picture}}" width="50" height="50" class="img-circle"></td>
             <td>{{i.name}}</td>
             <td>{{i.work}}</td>
+            <td>{{i.stackrep}}</td>
+            <td>{{i.stacktags}}</td>
         </tr>
         <!-- End: Table -->
     </table>  
@@ -78,3 +82,4 @@
 </div>
 <!-- User Management Table -->
 </div>
+
