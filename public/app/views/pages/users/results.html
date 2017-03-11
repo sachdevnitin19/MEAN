@@ -62,62 +62,14 @@
       <!-- Start: Table -->
     <table class="table">
         <tr>
-            <th>Rank</th>
+            <th>Image</th>
             <th>Name</th>
-            <th>Programming Languages known</th>
-            <th>C.G.P.A</th>
-            <th>Rating</th>
-            
+            <th>work</th>
         </tr>
-        <tr>
-            <td>1.</td>
-            <td>ABC</td>
-            <td>C,C++,JAVA,Javascript,PHP</td>
-            <td>9.98 </td>
-            <td>
-            <span uib-rating ng-model="rate1" max="5" read-only="isReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-            </td>
-           
-        </tr>
-         <tr>
-            <td>2.</td>
-            <td>DEF</td>
-            <td>C,C++,JAVA,Ruby</td>
-            <td>9.27 </td>
-            <td>
-            <span uib-rating ng-model="rate2" max="5" read-only="isReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-            </td>
-            
-        </tr>
-        <tr>
-            <td>3.</td>
-            <td>GHI</td>
-            <td>C,C++,JAVA,Python</td>
-            <td>8.5</td>
-            <td>
-            <span uib-rating ng-model="rate3" max="5" read-only="isReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>4.</td>
-            <td>JKL</td>
-            <td>C++,JAVA,C#</td>
-            <td>8.19</td>
-            <td>
-            <span uib-rating ng-model="rate4" max="5" read-only="isReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-            </td>
-           
-        </tr>
-        <tr>
-            <td>5.</td>
-            <td>MNO</td>
-            <td>C++,JAVA,.NET</td>
-            <td>7.75</td>
-            <td>
-            <span uib-rating ng-model="rate5" max="5" read-only="isReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
-            </td>
-            
+        <tr ng-repeat="i in resultObj track by $index">
+            <td><img src="{{i.profile_picture}}" width="50" height="50" class="img-circle"></td>
+            <td>{{i.name}}</td>
+            <td>{{i.work}}</td>
         </tr>
         <!-- End: Table -->
     </table>  
@@ -126,4 +78,3 @@
 </div>
 <!-- User Management Table -->
 </div>
-

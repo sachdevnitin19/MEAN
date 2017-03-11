@@ -252,5 +252,13 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 	}
 	wrkspc();
 
+$scope.resultObj={};
+	function res(){
+		$http.get('/api/result').then(function(data){
+			$scope.resultObj=data.data;
+			console.log($scope.resultObj);
+		})
+	}
+res();
 	
 });
