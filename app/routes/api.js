@@ -3,7 +3,7 @@ var jwt=require('jsonwebtoken');
 var secret= new Buffer("NITIN", "base64");
 var PythonShell=require('python-shell');
 var nodemailer=require('nodemailer');
-
+var Result=require('../models/result');
 
 module.exports=function(router){
 
@@ -144,6 +144,19 @@ var smtpTransport = nodemailer.createTransport({
 					}
 			})
 		});
+
+		router.get('/result',function(req,res){
+			console.log("/results");
+			Result.find({},function(err,result){
+				var results={};
+				result.forEach(function(res){
+					results[res._id]=res;
+				});
+				res.json(results);
+			});
+		});
+
+		
 		// Route to activate the user's account
     router.put('/activate/:token', function(req, res) {
         User.findOne({ temporarytoken: req.params.token }, function(err, user) {
