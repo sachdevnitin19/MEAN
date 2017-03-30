@@ -149,14 +149,14 @@ var smtpTransport = nodemailer.createTransport({
 			console.log("/results");
 			Result.find({},function(err,result){
 				var results={};
-<<<<<<< HEAD
-				var i=0;
-				result.forEach(function(res){
-					results[i++]=res;
-=======
+//<<<<<<< HEAD
+//				var i=0;
+//				result.forEach(function(res){
+//					results[i++]=res;
+//=======
 				result.forEach(function(res){
 					results[res._id]=res;
->>>>>>> efc50fd87f66b6f42fc5bdd1da2c61e971ce4e9c
+//>>>>>>> efc50fd87f66b6f42fc5bdd1da2c61e971ce4e9c
 				});
 				res.json(results);
 			});

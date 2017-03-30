@@ -4277,7 +4277,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   padding: 15px 15px;
-  font-size: 18px;
+  font-size: 30px;
   line-height: 20px;
   height: 50px;
 }
@@ -6979,3 +6979,12 @@ START: LOADING ICON FOR LOGGING OUT USER
 /* ===================================
 END: LOADING ICON FOR LOGGING OUT USER 
 =================================== */
+
+
+
+
+
+/*
+style.css 
+*/
+

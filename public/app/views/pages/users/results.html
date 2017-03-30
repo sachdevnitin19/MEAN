@@ -70,7 +70,7 @@
         </tr>
         <tr ng-repeat="i in resultObj track by $index">
             <td><img src="{{i.profile_picture}}" width="50" height="50" class="img-circle"></td>
-            <td>{{i.name}}</td>
+            <td data-toggle="modal" data-target="#resume">{{i.name}}</td>
             <td>{{i.work}}</td>
             <td>{{i.stackrep}}</td>
             <td>{{i.stacktags}}</td>
@@ -83,3 +83,86 @@
 <!-- User Management Table -->
 </div>
 
+
+
+ <div id="resume" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="resume" aria-hidden="true">
+         <div class="modal-dialog">
+
+             <div class="modal-content">
+             <div class="modal-header">
+                 
+             </div>
+                 <div class="modal-body ">
+                         <div class="well">
+                         <div class="row">
+        
+         <div class="profile">
+                <h1 class=" text-center">ABC</h1>
+                <div class=" col-sm-8">
+                    <p><strong>Email: </strong>abc123@gmail.com</p>
+                    <p><strong>Location: </strong>Mumbai,India</p>
+                    <p><strong>Languages: </strong>English,Hindi,Sindhi</p>
+                    <p><strong>Hobbies: </strong> Read, outings with friends, listen to music, draw and learn new things. </p>
+                    <p><strong>C.G.P.A:</strong>9.98 &nbsp;<strong>H.S.C:</strong>96.00% &nbsp;<strong>S.S.C:</strong>98.6% </p>
+                    <p>
+                        <strong>Projects:</strong><br>
+                        <ul>
+                            <li>
+                                Hospital Management System Website        
+                            </li>
+                            <li>
+                                Remote Flash Drive Detector Java Application.
+                            </li>
+                            <li>
+                               DDB for Movie Theatre Management.
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Co-Curricular Activities:</strong><br>
+                        Developed Sign Language Recognition System for LBS. 
+                    </p>
+                    <p><strong>Skills: </strong>
+                        <span class="tags">C</span> 
+                        <span class="tags">C++</span>
+                        <span class="tags">Javascript</span>
+                        <span class="tags">PHP</span>
+                    </p>
+
+                </div>             
+                <div class=" col-sm-4 text-center">
+                    <figure>
+                        <img src="https://www.hit4hit.org/img/login/user-icon-6.png" alt="" class="img-circle img-responsive">
+                        <figcaption class="ratings">
+                            <p>Ratings
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-star"></span>
+                            </a>
+                            <a href="#">
+                                 <span class="fa fa-star"></span>
+                            </a> 
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+            
+         </div>                 
+        
+    </div>
+    </div>
+                 </div>
+                 <div class="modal-footer">
+
+                 </div>
+             </div>
+         </div>
+     </div>
