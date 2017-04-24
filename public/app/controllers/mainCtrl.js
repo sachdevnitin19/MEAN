@@ -240,7 +240,7 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 			appl.wrk=data.data;
 			if(appl.wrk!=0)
 				appl.wrkboo=true;
-			console.log(appl.wrk);
+			
 			
 			/*var date=new Date(appl.wrk[0].datecreated1);
 			console.log(date);
@@ -256,8 +256,12 @@ $scope.resultObj={};
 	function res(){
 		$http.get('/api/result').then(function(data){
 			$scope.resultObj=data.data;
-			console.log($scope.resultObj);
 		})
+	}
+	appl.modalobj={};
+	appl.resfunc=function(id){
+		appl.modalobj=$scope.resultObj[id];
+
 	}
 res();
 	

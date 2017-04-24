@@ -19,10 +19,10 @@
     </div>
      <div class="col-lg-6">
           <!-- Apply Button Filter -->
-    <button type="button" ng-click="management.showMore(number);" class="btn btn-primary">Apply Filter</button>
+    <button type="button"  class="btn btn-primary">Apply Filter</button>
 
     <!--/ Show All Button -->
-    <button type="button" ng-click="management.showAll();" class="btn btn-primary">Show All</button>
+    <button type="button"  class="btn btn-primary">Show All</button>
     <!-- Input For Filter  -->
      </div>
 </div>
@@ -68,9 +68,9 @@
             <th class="col-md-2">Stackoverflow Reputation</th>
             <th class="col-md-3">Stackoverflow Tags</th>
         </tr>
-        <tr ng-repeat="i in resultObj track by $index">
-            <td><img src="{{i.profile_picture}}" width="50" height="50" class="img-circle"></td>
-            <td data-toggle="modal" data-target="#resume">{{i.name}}</td>
+        <tr ng-repeat="i in resultObj track by i._id">
+            <td><img src="https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png" width="50" height="50" class="img-circle"></td>
+            <td data-toggle="modal" data-target="#resume" ng-click="main.resfunc(i._id)">{{i.name}}</td>
             <td>{{i.work}}</td>
             <td>{{i.stackrep}}</td>
             <td>{{i.stacktags}}</td>
@@ -97,13 +97,31 @@
                          <div class="row">
         
          <div class="profile">
-                <h1 class=" text-center">ABC</h1>
+                <h1 class=" text-center">{{main.modalobj.name}}</h1>
                 <div class=" col-sm-8">
-                    <p><strong>Email: </strong>abc123@gmail.com</p>
-                    <p><strong>Location: </strong>Mumbai,India</p>
+                    <p><strong>Email: </strong>{{main.modalobj.email}}</p>
+                    <p><strong>Location: </strong>{{main.modalobj.location}}</p>
                     <p><strong>Languages: </strong>English,Hindi,Sindhi</p>
-                    <p><strong>Hobbies: </strong> Read, outings with friends, listen to music, draw and learn new things. </p>
-                    <p><strong>C.G.P.A:</strong>9.98 &nbsp;<strong>H.S.C:</strong>96.00% &nbsp;<strong>S.S.C:</strong>98.6% </p>
+                    <p><strong>Skills: </strong>
+                        <span class="tags">C</span> 
+                        <span class="tags">C++</span>
+                        <span class="tags">Javascript</span>
+                        <span class="tags">PHP</span>
+                    </p>
+                    <p>
+                        <strong>Courses:</strong><br>
+                        <ul>
+                            <li>
+                                Hospital Management System Website        
+                            </li>
+                            <li>
+                                Remote Flash Drive Detector Java Application.
+                            </li>
+                            <li>
+                               DDB for Movie Theatre Management.
+                            </li>
+                        </ul>
+                    </p>
                     <p>
                         <strong>Projects:</strong><br>
                         <ul>
@@ -119,14 +137,12 @@
                         </ul>
                     </p>
                     <p>
-                        <strong>Co-Curricular Activities:</strong><br>
+                        <strong>Certifications:</strong><br>
                         Developed Sign Language Recognition System for LBS. 
                     </p>
-                    <p><strong>Skills: </strong>
-                        <span class="tags">C</span> 
-                        <span class="tags">C++</span>
-                        <span class="tags">Javascript</span>
-                        <span class="tags">PHP</span>
+                     <p>
+                        <strong>Honors and Awards:</strong><br>
+                        Developed Sign Language Recognition System for LBS. 
                     </p>
 
                 </div>             
