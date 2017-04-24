@@ -10,7 +10,7 @@ var port=process.env.PORT||8000;
 var PythonShell=require('python-shell');
 
 // Force HTTPS on heroku
-if(process.env.NODE_ENV === 'production') {
+/*if(process.env.NODE_ENV === 'production') {
   app.enable("trust proxy");
   app.use (function (req, res, next) {
       if(req.secure) {
@@ -22,7 +22,7 @@ if(process.env.NODE_ENV === 'production') {
       }
   });
 }
-
+*/
 
 
 app.use(morgan('dev'));
