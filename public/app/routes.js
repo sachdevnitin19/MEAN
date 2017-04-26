@@ -76,3 +76,22 @@ app.run(['$rootScope','authFactory','$location',function($rootScope,authFactory,
 		}
 	});
 }]);
+
+app.run(function ($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
+        if(current.$$route.originalPath!='/')
+        {
+        	$rootScope.home=false;
+        	angular.element('.navbar-brand').css('color','#F05F40');
+        	angular.element('.navbar-default .nav > li > a').css('color','black');
+        	angular.element('.navbar-default').css('background-color','white');
+        }
+        else
+        {
+        	$rootScope.home=true;
+        	//angular.element('.navbar-brand').css('color','rgba(255, 255, 255, 0.7)');
+        	//angular.element('.navbar-default').css('background-color','transparent');
+        	//angular.element('.navbar-default .nav > li > a').css('color','rgba(255, 255, 255, 0.7)');
+        }
+    });
+});

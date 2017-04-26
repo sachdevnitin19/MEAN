@@ -159,10 +159,6 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 			{
 				toaster.error("Error!","Please upload excel file containing candidate's details.");
 			}
-			else if(appl.obj.zip==undefined)
-			{
-				toaster.error("Error!","Please upload zip file containing candidate's resume.");
-			}
 			else
 			{
 				var tokenObj={};
