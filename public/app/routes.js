@@ -79,9 +79,18 @@ app.run(['$rootScope','authFactory','$location',function($rootScope,authFactory,
 
 app.run(function ($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
-        if(current.$$route.originalPath!='/')
+       if(current.$$route.originalPath=='/activate/:token'||current.$$route.originalPath=='/forgotpwd/:token')
+       {
+       		$rootScope.home1=true;
+       		$rootScope.home=true;
+       		angular.element('.navbar-brand').css('color','#F05F40');
+        	angular.element('.navbar-default .nav > li > a').css('color','black');
+        	angular.element('.navbar-default').css('background-color','white');
+       }
+       else if(current.$$route.originalPath!='/')
         {
         	$rootScope.home=false;
+        	$rootScope.home1=true;
         	angular.element('.navbar-brand').css('color','#F05F40');
         	angular.element('.navbar-default .nav > li > a').css('color','black');
         	angular.element('.navbar-default').css('background-color','white');
@@ -89,6 +98,7 @@ app.run(function ($rootScope) {
         else
         {
         	$rootScope.home=true;
+        	$rootScope.home1=false;
         	//angular.element('.navbar-brand').css('color','rgba(255, 255, 255, 0.7)');
         	//angular.element('.navbar-default').css('background-color','transparent');
         	//angular.element('.navbar-default .nav > li > a').css('color','rgba(255, 255, 255, 0.7)');
