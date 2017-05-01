@@ -248,11 +248,14 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 	}
 	wrkspc();
 
-$scope.resultObj={};
+$scope.resultObj=[];
 	function res(){
 		$http.get('/api/result').then(function(data){
-			$scope.resultObj=data.data;
+			$scope.resultObj = $.map(data.data, function(value, rank) {
+			    return [value];
+			});
 		})
+		
 	}
 	appl.modalobj={};
 	appl.resfunc=function(id){

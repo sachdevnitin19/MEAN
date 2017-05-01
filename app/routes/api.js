@@ -4,6 +4,7 @@ var secret= new Buffer("NITIN", "base64");
 var PythonShell=require('python-shell');
 var nodemailer=require('nodemailer');
 var Result=require('../models/result');
+var gmail=require('./gmail');
 
 module.exports=function(router){
 
@@ -11,8 +12,8 @@ var smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
     auth: {
-        user: "nvrv.smartrecruiter@gmail.com",
-        pass: "password123!@#"
+        user: gmail.uid,
+        pass: gmail.pwd
     }
 });
 		router.post('/users',function(req,res){
