@@ -125,7 +125,6 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 				},
 				function(up){
 					appl.obj.excel=up;
-
 				}
 
 					);
@@ -251,9 +250,10 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 $scope.resultObj=[];
 	function res(){
 		$http.get('/api/result').then(function(data){
-			$scope.resultObj = $.map(data.data, function(value, rank) {
+			$scope.resultObj = $.map(data.data, function(value, id) {
 			    return [value];
 			});
+			console.log(data.data);
 		})
 		
 	}

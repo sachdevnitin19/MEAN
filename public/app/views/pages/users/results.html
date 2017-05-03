@@ -81,10 +81,11 @@
     <div style="border-width:1px !important; border-style:solid !important; border-color:#D9EDF7 !important; border-radius:16px !important;" class="row" ng-repeat="i in resultObj |orderBy : 'rank' " data-toggle="modal" data-target="#resume" ng-click="main.resfunc(i._id)">
     <br>
     <br>
-            <div  class="col-md-1 " style="border-radius:16px;background-color:#EE4B28; color:white;" >
-            <div  class="text-center">
-                <h2>{{i.rank}}</h2>
-            </div>
+            <div  class="col-md-1" >
+            
+                <!--<h2>{{i.rank}}</h2>-->
+                <i class="fa fa-certificate fa-3x  icon-blue"><span class="badge">{{i.rank}}</span></i>
+            
                 
             </div>
             <div class="col-md-1">

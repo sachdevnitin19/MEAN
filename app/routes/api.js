@@ -5,7 +5,15 @@ var PythonShell=require('python-shell');
 var nodemailer=require('nodemailer');
 var Result=require('../models/result');
 var gmail=require('./gmail');
+var mysql =require('mysql');
+var connection = mysql.createConnection({
+  host     : 'nvrv.crgn93rhkeiy.ap-south-1.rds.amazonaws.com',
+  user     : 'admin',
+  password : 'smartrecruiter',
+  database : 'nvrv'
+});
 
+connection.connect();
 module.exports=function(router){
 
 var smtpTransport = nodemailer.createTransport({
@@ -145,22 +153,26 @@ var smtpTransport = nodemailer.createTransport({
 					}
 			})
 		});
-
+		var list=[];
+		var listfun=function(){
+			connection.query('select f.id,f.name,f.email,f.location,f.profile_picture,l.education,l.experience,s.tags from facebook_data f inner join linkedin l on f.id=l.id left join StackOverFlowData s on f.id=s.id;',function(error,result,fields){
+				if(error) throw error;
+				console.log(result);
+				list=result;
+			});
+		}
+		listfun();
 		router.get('/result',function(req,res){
 			console.log("/results");
-			Result.find({},function(err,result){
+			
+			res.json(list);
+			/*Result.find({},function(err,result){
 				var results={};
-//<<<<<<< HEAD
-//				var i=0;
-//				result.forEach(function(res){
-//					results[i++]=res;
-//=======
 				result.forEach(function(res){
 					results[res._id]=res;
-//>>>>>>> efc50fd87f66b6f42fc5bdd1da2c61e971ce4e9c
 				});
 				res.json(results);
-			});
+			});*/
 		});
 
 		
