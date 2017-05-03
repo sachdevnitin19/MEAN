@@ -79,26 +79,28 @@
         
     </table>-->
     <div style="border-width:1px !important; border-style:solid !important; border-color:#D9EDF7 !important; border-radius:16px !important;" class="row" ng-repeat="i in resultObj |orderBy : 'rank' " data-toggle="modal" data-target="#resume" ng-click="main.resfunc(i._id)">
-            <div class="col-md-2">
-            <br>
-                <img style="align:center !important; margin:2px !important;" src="https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png" width="50" height="50" class="img-circle">
+    <br>
+    <br>
+            <div  class="col-md-1 " style="border-radius:16px;background-color:#EE4B28; color:white;" >
+            <div  class="text-center">
+                <h2>{{i.rank}}</h2>
+            </div>
+                
+            </div>
+            <div class="col-md-1">
+            
+                <img style="align:center !important;" src="https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png" width="75" height="75" class="img-circle">
             </div>
             <div class="col-md-5">
                 <h3>{{i.name}}</h3>
                 <small ng-show="i.work"><strong>Work:</strong> {{i.work}}</small>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
             <br>
                 <h5 ng-show="i.stacktags">{{i.stacktags}}</h5>
                 <small ng-show="i.stackrep"><strong>Stackoverflow Reputation: </strong>{{i.stackrep}}</small>
             </div>
-            <div class="col-md-1">
-            <br>
-
-                <big class="badge" >{{i.rank}}</big>
             
-                
-            </div>
         </div>  
     </div>
     
