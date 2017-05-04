@@ -154,10 +154,6 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 			{
 				toaster.error("Please enter all the fields.");	        
 			}
-			else if(appl.obj.excel==undefined)
-			{
-				toaster.error("Error!","Please upload excel file containing candidate's details.");
-			}
 			else
 			{
 				var tokenObj={};
@@ -246,7 +242,7 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 		})
 	}
 	wrkspc();
-
+appl.rankloading=true;
 $scope.resultObj=[];
 $scope.rank=[];
 function res(){
@@ -262,6 +258,7 @@ function res(){
 	appl.result=function (opt){
 		var option={};
 		option.opt=opt;
+		appl.rankloading=false
 		$http.post('/api/result',option).then(function(data){
 			/*$scope.resultObj = $.map(data.data, function(value, id) {
 			    return [value];
@@ -277,6 +274,7 @@ function res(){
 			/*$scope.resultObj.sort(function(a, b) {
 			    return parseFloat(b.score) - parseFloat(a.score);
 			});*/
+			appl.rankloading=true;
 			console.log($scope.resultObj);
 		})
 		

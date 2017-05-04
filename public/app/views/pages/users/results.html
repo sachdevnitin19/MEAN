@@ -45,9 +45,13 @@
     </div>    
 <!--</div>-->
 <br>
+<div ng-show="!main.rankloading" class="text-center">
+    <h1>Loading....</h1>
+    <div  class="dizzy-gillespie"></div>    
+</div>
 
 <!-- User Management Table -->
-<div class="panel panel-info">
+<div ng-show="main.rankloading" class="panel panel-info">
     <!-- Heading -->
     <div class="panel-heading text-center">
         <strong>Candidate Ranking List</strong>
