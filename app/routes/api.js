@@ -6,6 +6,7 @@ var nodemailer=require('nodemailer');
 var Result=require('../models/result');
 var gmail=require('./gmail');
 var mysql =require('mysql');
+
 var connection = mysql.createConnection({
   host     : 'nvrv.crgn93rhkeiy.ap-south-1.rds.amazonaws.com',
   user     : 'admin',
@@ -157,22 +158,25 @@ var smtpTransport = nodemailer.createTransport({
 		var listfun=function(){
 			connection.query('select f.id,f.name,f.email,f.location,f.profile_picture,l.education,l.experience,s.tags from facebook_data f inner join linkedin l on f.id=l.id left join StackOverFlowData s on f.id=s.id;',function(error,result,fields){
 				if(error) throw error;
-				console.log(result);
+				//console.log(result);
+				
 				list=result;
 			});
 		}
 		listfun();
+		router.get('/list',function(req,res){
+			console.log("list");
+			res.send(list);
+		})
 		router.get('/result',function(req,res){
 			console.log("/results");
-			
-			res.json(list);
-			/*Result.find({},function(err,result){
-				var results={};
-				result.forEach(function(res){
-					results[res._id]=res;
-				});
-				res.json(results);
-			});*/
+			var shell=new PythonShell('./app/routes/Ranking1.py',{mode:'text'});
+			shell.send('Java');
+			shell.on('message',function (message) {
+				res.send(message);
+				console.log(message);
+			})
+			//res.json(list);
 		});
 
 		

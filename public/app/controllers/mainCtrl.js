@@ -248,12 +248,33 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 	wrkspc();
 
 $scope.resultObj=[];
-	function res(){
-		$http.get('/api/result').then(function(data){
-			$scope.resultObj = $.map(data.data, function(value, id) {
-			    return [value];
+$scope.rank=[];
+function res(){
+		$http.get('/api/list').then(function(data){
+			
+			$scope.resultObj=data.data;
+			$scope.resultObj.sort(function(a, b) {
+			    return parseFloat(a.id) - parseFloat(b.id);
 			});
+			console.log($scope.resultObj);
+		})
+	}
+	appl.result=function (opt){
+		console.log(opt);
+		$http.get('/api/result',opt).then(function(data){
+			/*$scope.resultObj = $.map(data.data, function(value, id) {
+			    return [value];
+			});*/
 			console.log(data.data);
+			$scope.rank=data.data;
+			for (var j=0;j<$scope.resultObj.length;j++)
+			{
+				$scope.resultObj[j].score=$scope.rank[j];
+			}
+			$scope.resultObj.sort(function(a, b) {
+			    return parseFloat(b.score) - parseFloat(a.score);
+			});
+			console.log($scope.resultObj);
 		})
 		
 	}
@@ -262,6 +283,7 @@ $scope.resultObj=[];
 		appl.modalobj=$scope.resultObj[id];
 
 	}
+
 res();
 	
 });
