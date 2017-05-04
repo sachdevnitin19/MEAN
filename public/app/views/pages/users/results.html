@@ -78,7 +78,7 @@
         <!-- End: Table 
         
     </table>-->
-    <div style="border-width:1px !important; border-style:solid !important; border-color:#D9EDF7 !important; border-radius:16px !important;" class="row" ng-repeat="i in resultObj |orderBy : 'rank' " data-toggle="modal" data-target="#resume" ng-click="main.resfunc(i._id)">
+    <div style="border-width:1px !important; border-style:solid !important; border-color:#D9EDF7 !important; border-radius:16px !important;" class="row" ng-repeat="i in resultObj |orderBy : 'score' : true " data-toggle="modal" data-target="#resume" ng-click="main.resfunc(i.id)">
     <br>
     <br>
             <div  class="col-md-1" >
@@ -94,7 +94,7 @@
             </div>
             <div class="col-md-5">
                 <h3>{{i.name}}</h3>
-                <small ng-show="i.work"><strong>Work:</strong> {{i.work}}</small>
+                <small ng-show="i.tagline"> {{i.tagline}}</small>
             </div>
             <div class="col-md-5">
             <br>
@@ -127,56 +127,17 @@
                 <div class=" col-sm-8">
                     <p><strong>Email: </strong>{{main.modalobj.email}}</p>
                     <p><strong>Location: </strong>{{main.modalobj.location}}</p>
-                    <p><strong>Languages: </strong>English,Hindi,Sindhi</p>
-                    <p><strong>Skills: </strong>
-                        <span class="tags">C</span> 
-                        <span class="tags">C++</span>
-                        <span class="tags">Javascript</span>
-                        <span class="tags">PHP</span>
+                    <p><strong>Education: </strong>{{main.modalobj.education}}</p>
+                    <p ng-show="main.modalobj.experience!=' '"><strong>Experience:</strong>{{main.modalobj.experience}}</p> 
+                    <p ng-show="main.modalobj.tags"><strong>Skills: </strong><br>
+                        {{main.modalobj.tags}}
                     </p>
-                    <p>
-                        <strong>Courses:</strong><br>
-                        <ul>
-                            <li>
-                                Hospital Management System Website        
-                            </li>
-                            <li>
-                                Remote Flash Drive Detector Java Application.
-                            </li>
-                            <li>
-                               DDB for Movie Theatre Management.
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>Projects:</strong><br>
-                        <ul>
-                            <li>
-                                Hospital Management System Website        
-                            </li>
-                            <li>
-                                Remote Flash Drive Detector Java Application.
-                            </li>
-                            <li>
-                               DDB for Movie Theatre Management.
-                            </li>
-                        </ul>
-                    </p>
-                    <p>
-                        <strong>Certifications:</strong><br>
-                        Developed Sign Language Recognition System for LBS. 
-                    </p>
-                     <p>
-                        <strong>Honors and Awards:</strong><br>
-                        Developed Sign Language Recognition System for LBS. 
-                    </p>
-
                 </div>             
                 <div class=" col-sm-4 text-center">
                     <figure>
-                        <img src="https://www.hit4hit.org/img/login/user-icon-6.png" alt="" class="img-circle img-responsive">
+                        <img src={{main.modalobj.profile_picture}} alt="no image" class="img-circle img-responsive">
                         <figcaption class="ratings">
-                            <p>Ratings
+                            <!--<p>Ratings
                             <a href="#">
                                 <span class="fa fa-star"></span>
                             </a>
@@ -192,7 +153,7 @@
                             <a href="#">
                                  <span class="fa fa-star"></span>
                             </a> 
-                            </p>
+                            </p>-->
                         </figcaption>
                     </figure>
                 </div>

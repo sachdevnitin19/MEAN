@@ -156,7 +156,7 @@ var smtpTransport = nodemailer.createTransport({
 		});
 		var list=[];
 		var listfun=function(){
-			connection.query('select f.id,f.name,f.email,f.location,f.profile_picture,l.education,l.experience,s.tags from facebook_data f inner join linkedin l on f.id=l.id left join StackOverFlowData s on f.id=s.id;',function(error,result,fields){
+			connection.query('select f.id,f.name,f.email,f.location,f.profile_picture,l.education,l.tagline,l.experience,s.tags from facebook_data f inner join linkedin l on f.id=l.id left join StackOverFlowData s on f.id=s.id;',function(error,result,fields){
 				if(error) throw error;
 				//console.log(result);
 				
@@ -168,10 +168,12 @@ var smtpTransport = nodemailer.createTransport({
 			console.log("list");
 			res.send(list);
 		})
-		router.get('/result',function(req,res){
+		router.post('/result',function(req,res){
 			console.log("/results");
+			console.log("option: "+req.body.opt);
 			var shell=new PythonShell('./app/routes/Ranking1.py',{mode:'text'});
-			shell.send('Java');
+			shell.send(req.body.opt);
+
 			shell.on('message',function (message) {
 				res.send(message);
 				console.log(message);

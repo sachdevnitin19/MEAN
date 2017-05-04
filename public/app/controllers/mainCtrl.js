@@ -260,8 +260,9 @@ function res(){
 		})
 	}
 	appl.result=function (opt){
-		console.log(opt);
-		$http.get('/api/result',opt).then(function(data){
+		var option={};
+		option.opt=opt;
+		$http.post('/api/result',option).then(function(data){
 			/*$scope.resultObj = $.map(data.data, function(value, id) {
 			    return [value];
 			});*/
@@ -269,18 +270,22 @@ function res(){
 			$scope.rank=data.data;
 			for (var j=0;j<$scope.resultObj.length;j++)
 			{
+				console.log("rank array: "+$scope.rank[j]);
+				console.log("resultobj: "+$scope.resultObj[j].name);
 				$scope.resultObj[j].score=$scope.rank[j];
 			}
-			$scope.resultObj.sort(function(a, b) {
+			/*$scope.resultObj.sort(function(a, b) {
 			    return parseFloat(b.score) - parseFloat(a.score);
-			});
+			});*/
 			console.log($scope.resultObj);
 		})
 		
 	}
 	appl.modalobj={};
 	appl.resfunc=function(id){
-		appl.modalobj=$scope.resultObj[id];
+		
+		appl.modalobj=$scope.resultObj[id-1];
+		
 
 	}
 
