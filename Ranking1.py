@@ -1,5 +1,4 @@
 import pymysql
-import pymysql.cursors
 
 score = [None] * 24
 
@@ -10,7 +9,7 @@ conn = connection.cursor()
 skillsreqd = input()
 
 
-for var in range(0,23):
+for var in range(0,24):
     sql = "select skillsandexpertise from linkedin where id = %d" %(var+1)
     row = conn.execute(sql)
     row = conn.fetchall()
@@ -19,7 +18,7 @@ for var in range(0,23):
     score[var] = score1
 
 
-for var in range(0,23):
+for var in range(0,24):
     sql = "select experience from linkedin where id = %d" %(var+1)
     row = conn.execute(sql)
     row = conn.fetchall()
@@ -28,7 +27,7 @@ for var in range(0,23):
     score[var] = score[var] + score1
 
 
-for var in range(0,23):
+for var in range(0,24):
     sql = "select education from linkedin where id = %d" %(var+1)
     row = conn.execute(sql)
     row = conn.fetchall()
@@ -36,8 +35,7 @@ for var in range(0,23):
     score1 = row1.lower().count(skillsreqd.lower())*15
     score[var] = score[var] + score1
 
-
-for var in range(0,23):
+for var in range(0,24):
     sql = "select courses from linkedin where id = %d" %(var+1)
     row = conn.execute(sql)
     row = conn.fetchall()
@@ -46,7 +44,7 @@ for var in range(0,23):
     score[var] = score[var] + score1
 
 
-for var in range(0,23):
+for var in range(0,24):
     sql = "select certifications from linkedin where id = %d" %(var+1)
     row = conn.execute(sql)
     row = conn.fetchall()
@@ -54,7 +52,7 @@ for var in range(0,23):
     score1 = row1.lower().count(skillsreqd.lower())*10
     score[var] = score[var] + score1
 
-for var in range(0,23):
+for var in range(0,24):
     sql = "select likes from modifiedFblikes where id = %d" %(var+1)
     row = conn.execute(sql)
     row = conn.fetchall()
@@ -62,7 +60,15 @@ for var in range(0,23):
     score1 = row1.lower().count(skillsreqd.lower())*2
     score[var] = score[var] + score1
 
-for var in range(0,23):
+for var in range(0,24):
+    sql = "select posts from ModifiedFbPosts where id = %d" %(var+1)
+    row = conn.execute(sql)
+    row = conn.fetchall()
+    row1 = str(row)
+    score1 = row1.lower().count(skillsreqd.lower())*5
+    score[var] = score[var] + score1
+
+for var in range(0,24):
     sql = "select tags from StackOverFlowData where id = %d" %(var+1)
     row = conn.execute(sql)
     row = conn.fetchall()
