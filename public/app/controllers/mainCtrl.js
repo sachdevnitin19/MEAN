@@ -223,7 +223,7 @@ app.controller('mainController',function($http,$scope,$interval,$location,$timeo
 		})
 	}
 	appl.wrk=[];
-	appl.wrkboo=false
+	appl.wrkboo=false;
 	function wrkspc(){
 		var tokenObj={};
 		tokenObj.token=authToken.getToken();
